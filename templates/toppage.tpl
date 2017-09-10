@@ -1,8 +1,9 @@
-<html>
-  <head>
-    <title>{ $title }</title>
-  </head>
+{include file='header.tpl'}
+
   <body>
+    
     hogege
   </body>
-</html>
+
+{include file='footer.tpl'}
+  
