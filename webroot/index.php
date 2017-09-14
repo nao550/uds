@@ -8,13 +8,9 @@ if ( ! isset($_SESSION['id'])){
 include_once '../vendor/autoload.php';
 include_once '../config.php';
 
-$smarty = new Smarty();
-$smarty->template_dir = $CFG['HOMEDIR'] . 'templates/';
-$smarty->compile_dir  = $CFG['HOMEDIR'] . 'templates_c/';
-$smarty->config_dir   = $CFG['HOMEDIR'] . 'configs/';
-$smarty->cache_dir    = $CFG['HOMEDIR'] . 'cache/';
+isset( $_POST['gakusekinum']) ? $gakusekinum = $_POST['gakusekinum'] : $gakusekinum = 'testnum';
 
-$smarty->assign("page_title", $CFG['SITENAME']);
+$smarty->assign('gakusekinum', $gakusekinum);
 
 $smarty->display('toppage.tpl');
 
