@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="phpunit.xsd"
+         bootstrap="./tests/bootstrap.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         verbose="true"
+         stopOnFailure="true"
+         processIsolation="false"
+         backupGlobals="false"
+         syntaxCheck="true"
+         >
+  <testsuite name="uds test">
+    <directory>./tests</directory>
+  </testsuite>
+</phpunit>

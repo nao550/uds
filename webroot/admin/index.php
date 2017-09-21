@@ -10,6 +10,7 @@ include_once __DIR__ . '/../../config.php';
 
 // 現在の状態
 isset( $_SESSION['mode'] ) ? $mode = $_SESSION['mode'] : $mode ='';
+isset( $_GET['mode'] ) ? $mode = $_GET['mode'] : $mode ='';
 
 // 既ログインのチェック、(170915:あとで調整)
 if (isset ( $_SESSION['sid'])){
