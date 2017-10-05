@@ -24,7 +24,7 @@ class accountlibTest extends TestCase
     $this->newpassword = 'testpass';    
     $this->regdate = getToDay();
     $this->chdate = getToDay();
-    $this->target = new Admins;
+    $this->target = new Account;
   }
 
   /*

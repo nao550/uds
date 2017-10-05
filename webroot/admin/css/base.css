@@ -1,1 +1,17 @@
 @import url('signin.css');
+
+
+.row {
+    margin-top: 10px;
+}
+
+th {
+    text-align: center;
+}
+
+td.center {
+    vertical-align: middle;
+    text-align: center;    
+}
+
+

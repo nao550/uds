@@ -3,7 +3,7 @@
 
 */
 
-class Admins {
+class Account {
   private $pdo;
   
   function __construct(){

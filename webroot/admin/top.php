@@ -9,8 +9,6 @@ include_once __DIR__ . '/../../vendor/autoload.php';
 include_once __DIR__ . '/../../config.php';
 include_once $CFG['HOMEDIR'] . 'lib/accountlib.php';
 
-var_dump($_SESSION);
-
 // 既ログインのチェック、
 if (isset ( $_SESSION['sid'])){
   // POST の sid と SESSSION id が同じかチェック(セッションハイジャック対応？)
@@ -21,7 +19,7 @@ if (isset ( $_SESSION['sid'])){
   }
 }
 
-$account = new ACCOUNT;
+$account = new Account;
 
 // ログインチェック
 $errormode = 0;
@@ -32,7 +30,7 @@ if (isset($_POST['mode'])){
     If ( $account->chkAdminLogin( $adminId, $adminPassword ) ){
       // ログインOK
       $_SESSION['accaout'] = $adminId;
-      $_SESSION['sid'] = session_regenerate_id;
+      $_SESSION['sid'] = session_regenerate_id();
       setcookie('sid', $_SESSION['sid'], time()+60*60*24); // set sid to cookie
     } else {
       // ログイン false
@@ -42,7 +40,7 @@ if (isset($_POST['mode'])){
   }
 }
 
-$smarty->assign('sid', $_SESSSION['sid']);
+$smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
 $smarty->display('file:admin/top.tpl');
 
