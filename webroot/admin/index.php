@@ -5,7 +5,7 @@ if ( ! isset($_SESSION['id'])){
   $_SESSION['id'] = session_id();
 }
 
-include_once __DIR__ . '/../../vendor/autoload.php';
+//include_once __DIR__ . '/../../vendor/autoload.php';
 include_once __DIR__ . '/../../config.php';
 
 // 現在の状態

@@ -7,8 +7,8 @@ if ( ! isset($_SESSION['id'])){
 
 include_once __DIR__ . '/../../vendor/autoload.php';
 include_once __DIR__ . '/../../config.php';
-include_once $CFG['HOMEDIR'] . 'lib/accountlib.php';
-include_once $CFG['HOMEDIR'] . 'lib/qstlib.php';
+//include_once $CFG['HOMEDIR'] . 'lib/accountlib.php';
+//include_once $CFG['HOMEDIR'] . 'lib/qstlib.php';
 
 // 既ログインのチェック、
 if (isset ( $_SESSION['sid'])){
