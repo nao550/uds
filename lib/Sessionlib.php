@@ -42,6 +42,7 @@ class PpSession {
   //!	@return	boolean	true	:セッションタイムアウトしていない
   //!					false	:セッションタイムアウトした
   public function start() {
+    session_cache_limiter('none');
     session_start();
 
     $now = time();

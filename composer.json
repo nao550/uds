@@ -7,5 +7,11 @@
         "phpunit/phpunit": "5.7.21",
         "phpunit/dbunit": "2.0.3",
         "phake/phake": "2.*"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "morris\\": "lib/"
+        }
     }
 }

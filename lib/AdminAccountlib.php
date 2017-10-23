@@ -3,35 +3,24 @@
 
 */
 
-class Account {
-  private $pdo;
-  
-  function __construct(){
-    global $CFG;
-    $dsn = 'mysql:host=' . $CFG['DBSV'] . ';dbname=' . $CFG['DBNM'] . ';charset=utf8';
-    try{
-      $this->pdo = new PDO($dsn, $CFG['DBUSER'], $CFG['DBPASS']);
-    } catch (PDOException $e) {
-      exit('データベース接続失敗。'.$e->getMessage());
-    }
-  }
+class AdminAccount extends Account {
 
-  function AddAdminAccount ( $id, $password )
+  function AddAdminAccount ( $username, $password )
   {
     $sql = 'INSERT INTO admin (id, psw, regdate ) VALUES ( :id, :psw, :regdate);';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':id', $id, PDO::PARAM_STR);
+    $stm->bindValue(':id', $username, PDO::PARAM_STR);
     $stm->bindValue(':psw', $password, PDO::PARAM_STR);
     $stm->bindValue(':regdate', getToDay(), PDO::PARAM_STR);
     $stm->execute();
     return true;
   }
   
-  function chkAdminLogin( $id , $password ){
+  function chkAdminLogin( $username , $password ){
     
     $sql = 'select * from admin where id = :id and psw = :psw ';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':id', $id, PDO::PARAM_STR);
+    $stm->bindValue(':id', $username, PDO::PARAM_STR);
     $stm->bindValue(':psw', $password, PDO::PARAM_STR);
     $stm->execute();
 
@@ -44,16 +33,16 @@ class Account {
     }
   }
 
-  function CngAdminPassword( $id, $oldpassword, $newpassword )
+  function CngAdminPassword( $username, $oldpassword, $newpassword )
   {
     return true;
   }
   
-  function DelAdminAccount ( $id, $password )
+  function DelAdminAccount ( $username, $password )
   {
     $sql = 'DELETE FROM admin WHERE id = :id AND psw = :psw ;';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':id', $id, PDO::PARAM_STR);
+    $stm->bindValue(':id', $username, PDO::PARAM_STR);
     $stm->bindValue(':psw', $password, PDO::PARAM_STR);
     $stm->execute();
     return true;

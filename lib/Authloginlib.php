@@ -1,8 +1,27 @@
 <?php
-//!	認証処理サンプル	ログイン画面処理クラス
-//require_once 'ppAuthDb.php';
-require_once 'ppSession.php';
-require_once 'ppPage.php';
+  //!	入力値チェック
+  //!	@param	string	$user	ユーザ名
+  //!	@param	string	$passwd	パスワード
+  //!	@return	boolean			true:OK	false:NG
+//  protected function chkInput($user, $passwd) {
+  //!	ログアウト処理
+//  protected function logout() {
+  //!	ログイン成功処理
+//  protected function loggedin() {
+  //!	パスワードチェック処理
+  //!	@param	string	$passwd		パスワード（ユーザからの入力値）
+  //!	@param	string	$passwddb	パスワード（DBからの取得値）
+  //!	@return	boolean				true:パスワード一致	false:一致しない
+//  protected function chkPasswd($passwd, $passwddb) {
+  //!	認証処理
+  //!	@return	integer		0:OK	0以外:NG
+//  protected function chkAuth() {
+  //!	ログイン画面表示
+  //!	@param	integer	$msgNo		0以外:メッセージ番号
+//  protected function dispLogin($msgNo) {
+  //!	ログイン処理
+//  public function loginProc() {
+
 //--------------------------------------------------------------//
 //!	ログイン画面処理クラス
 class PpAuthLogin {
@@ -41,7 +60,7 @@ class PpAuthLogin {
 
   //!	ログアウト処理
   protected function logout() {
-    $sess = new PpSession($this->options['sessname']);
+    $sess = new Session($this->options['SESSNAME']);
     if($sess->sessionExists()){
       $sess->start();
       $sess->endProc();
@@ -50,15 +69,15 @@ class PpAuthLogin {
 
   //!	ログイン成功処理
   protected function loggedin() {
-    $sess = new PpSession($this->options['sessname']);
+    $sess = new Session($this->options['SESSNAME']);
     $exist = $sess->sessionExists();
     $sess->start();
     if($exist){
       $sess->regenerate();	//	セッションIDを生成しなおす
     }
     $sess->set('loggedin', 1);
-    $url = 'Location: http://' . $_SERVER['HTTP_HOST'] . $this->options['loginok_page'];
-    header($url, true, 303);	//	ログイン後画面へ遷移
+//    $url = 'Location: http://' . $_SERVER['HTTP_HOST'] . $this->options['loginok_page'];
+//    header($url, true, 303);	//	ログイン後画面へ遷移
   }
 
   //!	パスワードチェック処理
@@ -66,8 +85,8 @@ class PpAuthLogin {
   //!	@param	string	$passwddb	パスワード（DBからの取得値）
   //!	@return	boolean				true:パスワード一致	false:一致しない
   protected function chkPasswd($passwd, $passwddb) {
-    $string = $this->options['security_salt'] . $passwd;
-    $passcrypt = hash($this->options['cryptType'], $string);
+    $string = $this->options['PWDSALT'] . $passwd;
+    $passcrypt = hash($this->options['CRYPTTYPE'], $string);
     if($passcrypt === $passwddb){
       return true;
     }
@@ -94,8 +113,8 @@ class PpAuthLogin {
     $user   = $_POST['username'];
     $passwd = $_POST['password'];
     if($this->chkInput($user, $passwd)){	//	入力値チェック
-      $db = new PpAuthDb($this->options);
-      $passwddb = $db->getPasswd($user);
+      $account = new Account($this->options);
+      $passwddb = $account->getPasswd($user);
       if($passwddb !== null
 	 && $this->chkPasswd($passwd, $passwddb)){
 	$this->loggedin();				//	ログイン成功

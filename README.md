@@ -4,6 +4,10 @@
 
 5問前後のアンケートがあり、その後にチェックテストが続けて表示される
 
+*検討事項
+-ログインのチェックは Auth->chkLogined にて $_SESSION['sid'] == $_POST['sid'] でチェックしているがこれで十分か？
+
+
 *log
 
 ・
@@ -14,6 +18,9 @@
 
 qstlib.php -> AddQst() の作成
 GetAllQst() のテスト作りたい→DBUnitの使いかた調査？
+
+171020: Account から Users に変更、
+    admin のチェックをユーザレベルですることにした
 171005: qstlib.php -> GetAllQst() できた
 171005: qst.php の表示できた
 171003: アンケートライブラリの作成中

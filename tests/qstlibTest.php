@@ -3,14 +3,14 @@ require 'vendor/autoload.php';
 require 'config.php';
 
 use PHPUnit\Framework\TestCase;
-require 'lib/accountlib.php';
+require 'lib/Qstlib.php';
 
 class qstlibTest extends TestCase
 {
 
   private $qstStr = '';
   private $qstType = '';
-  private $qstSelect[] = array();
+  private $qstSelect = array();
   private $qstRegdate = '';
 
 
@@ -20,8 +20,8 @@ class qstlibTest extends TestCase
     $this->qstType = '1';
     $this->qstSelect = array('選択肢1','選択肢2','選択肢3','選択肢4',);
     $this->arQst = array( $this->qstStr, $this->qstType,
-                          $this->qstSelect)
-    $this->target = new Qst;
+                          $this->qstSelect);
+    $this->target = new Qst;;
   }
 
   /*

@@ -53,6 +53,10 @@ function h( $str ){
   return  htmlspecialchars( $str, ENT_QUOTES, 'UTF-8' );
 }
 
+function getPost( $str ){
+  isset($_POST[$str]) ? $rstr = h($_POST[$str]) : $rstr = '' ;
+}
+
 function hankaku( $str ){
   $str = str_replace('、','',$str);
   $str = str_replace(',','',$str);
