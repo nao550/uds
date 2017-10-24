@@ -19,7 +19,11 @@
 qstlib.php -> AddQst() の作成
 GetAllQst() のテスト作りたい→DBUnitの使いかた調査？
 
-171020: Account から Users に変更、
+
+171024: Session.php, SessionTest.php ひととおり完成
+171024: User.php に CngUserPassword の追加
+171023: User.php と UserTest.php が動くようになった
+171020: Account から User に変更、
     admin のチェックをユーザレベルですることにした
 171005: qstlib.php -> GetAllQst() できた
 171005: qst.php の表示できた

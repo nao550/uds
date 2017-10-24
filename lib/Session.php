@@ -1,7 +1,7 @@
 <?php
-//!	セッション管理のサンプル	セッション管理処理クラス
-//------------------------------//
-//!	セッション管理クラス
+/* セッション管理クラス
+
+ */
 namespace morris;
 
 class Session {
@@ -66,7 +66,9 @@ class Session {
       setcookie(session_name(), '', time() - 42000,
 		$params['path'],   $params['domain'],
 		$params['secure'], $params['httponly']);
+      return true;
     }
+    return false;
   }
 
   //!	セッション終了処理
@@ -74,13 +76,16 @@ class Session {
     $this->clear();
     $this->delCookie();
     session_destroy();
+    return true;
   }
 
   //!	セッション変数設定
+  //!   @retrun boolen 
   //!	@param	string	$key	キー
   //!	@param	mixed	$value	設定する値
   public function set($key, $value) {
     $_SESSION[$key] = $value;
+    return true;
   }
 
   //!	セッション変数取得
@@ -95,15 +100,19 @@ class Session {
   }
 
   //!	セッション変数削除
+  //!   @return boolen
   //!	@param	string	$key		キー
   public function remove($key) {
     if(isset($_SESSION[$key])){
       unset($_SESSION[$key]);
+      return true;
     }
+    return false;
   }
 
   //!	セッション変数クリア
   public function clear() {
     $_SESSION = array();
+    return true;
   }
 }
