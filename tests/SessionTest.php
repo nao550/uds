@@ -58,6 +58,7 @@ class SessionTest extends TestCase
   public function testget()
   {
     $this->assertEquals( $this->id, $this->target->get('id', $this->id ));
+    $this->assertNull( $this->target->get('foo'));
   }
 
   public function testremove()

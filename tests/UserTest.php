@@ -20,8 +20,8 @@ class UserTest extends TestCase
   private $regdate = null;
   private $chdate = null;
   private $target = null;
-  
   public function setUp()
+
   {
     $this->user = 'testadmin';
     $this->failuser = 'aa';
@@ -65,7 +65,7 @@ class UserTest extends TestCase
 
   public function testGetUserRank()
   {
-    $this->assertEquals($this->rank, $this->target->getUserRank( $this->user, $this->oldpassword) );
+    $this->assertEquals($this->rank, $this->target->getUserRank( $this->user, $this->password ) );
   }
   
   public function testCngUserPassword ( )

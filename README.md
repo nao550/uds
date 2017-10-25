@@ -19,7 +19,8 @@
 qstlib.php -> AddQst() の作成
 GetAllQst() のテスト作りたい→DBUnitの使いかた調査？
 
-
+171025: 管理者ログインチェックの完成、
+どうもややこしいやりかたをしている気がする。
 171024: Session.php, SessionTest.php ひととおり完成
 171024: User.php に CngUserPassword の追加
 171023: User.php と UserTest.php が動くようになった

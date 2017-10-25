@@ -55,6 +55,7 @@ function h( $str ){
 
 function getPost( $str ){
   isset($_POST[$str]) ? $rstr = h($_POST[$str]) : $rstr = '' ;
+  return $rstr;
 }
 
 function hankaku( $str ){

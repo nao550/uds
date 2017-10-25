@@ -1,11 +1,22 @@
 <?php
 /* セッション管理クラス
-
+   public __construct( array, array )
+   public function sessionChk( array)
+   public function sessionExists() 
+   public function start() 
+   public function regenerate() 
+   public function delCookie() 
+   public function endProc() 
+   public function set( string, string ) 
+   public function get( string, string )
+   public function remove( string )
+   public function clear()
  */
 namespace morris;
 
 class Session {
   protected	$timeout;	//!<	セッションタイムアウト時間
+  protected     $options = array();
 
   //!	コンストラクタ
   //!	@param	string	$sessname	セッション名
@@ -14,7 +25,6 @@ class Session {
     if(is_string($sessname) && !empty($sessname)){
       session_name($sessname);
     }
-
     //	タイムアウト時間が指定されていないときは
     //	セッションガーベジコレクタの時間をセッションタイムアウト時間とする
     $gc_maxlifetime = ini_get('session.gc_maxlifetime');
@@ -29,6 +39,21 @@ class Session {
     }
   }
 
+  public function sessionChk( $options = array()) {
+    // セッションを開始してtimeoutなら、セッションの削除とfalseをリターン
+    if (! $this->start()) {
+      $this->endProc();
+    }
+
+    // セッションIDの比較
+    if ( ! empty($this->get('sid')) && ! empty(getPost('sid'))){
+      if ( $this->get('sid') !== getPost('sid')) {
+        $this->endProc();
+      }
+    }
+    return true;
+  }
+
   //!	セッション存在チェック
   //!	@return	boolean		true:セッション開始中
   public function sessionExists() {
@@ -37,12 +62,12 @@ class Session {
     }
     return false;
   }
-
   //!	セッション開始とタイムアウトチェック
   //!	@return	boolean	true	:セッションタイムアウトしていない
   //!					false	:セッションタイムアウトした
   public function start() {
-    session_cache_limiter('none');
+    //session_id();
+    //session_cache_limiter('none');
     session_start();
 
     $now = time();

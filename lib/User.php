@@ -64,7 +64,7 @@ class User {
     }
 
     //	文字数と使用文字のチェックを行う,
-    if(preg_match('/\A[a-z0-9]{6,30}\z/ui', $user) == 0) {
+    if(preg_match('/\A[a-z0-9]{6,30}\z/', $user) == 0) {
       return false;
     }
 
@@ -185,9 +185,7 @@ class User {
   }
 
   /** check user rank.
-  * @param string $username
-  * @param string $password
-  * @return int
+  * @return string
   */
   function getUserRank( $username, $password )
   {
