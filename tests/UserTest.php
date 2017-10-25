@@ -1,8 +1,7 @@
 <?php
 namespace morris;
 
-require 'vendor/autoload.php';
-require 'config.php';
+require_once 'config.php';
 
 use PHPUnit\Framework\TestCase;
 use morris\User;
@@ -44,28 +43,42 @@ class UserTest extends TestCase
   
   public function testAddUser ( )
   {
-    $this->assertTrue( $this->target->AddUser( $this->user, $this->password, $this->rank ));
+    // 以前のエラー終了時の残り削除
+    $this->target->delUser( $this->user, $this->password ); 
+
+    $this->assertEquals( 1, $this->target->addUser( $this->user, $this->password, $this->rank ));
+    $this->assertEquals( 0, $this->target->AddUser( $this->user, $this->password, $this->rank ));    
+
   }
 
   public function testChkLogin ( )
   {
-    $this->assertEquals( $this->user, $this->target->ChkLogin( $this->user, $this->password ) );
+    $this->assertTrue( $this->target->ChkLogin( $this->user, $this->password ) );
+    $this->assertFalse( $this->target->ChkLogin( $this->failuser, $this->password ) );    
+  }
+
+  public function testExistUser()
+  {
+    $this->assertTrue( $this->target->existUser( $this->user ));
+    $this->assertFalse( $this->target->existUser( $this->failuser ));    
   }
 
   public function testGetUserRank()
   {
-    $this->assertEquals($this->rank, $this->target->GetUserRank( $this->user, $this->oldpassword) );
+    $this->assertEquals($this->rank, $this->target->getUserRank( $this->user, $this->oldpassword) );
   }
   
   public function testCngUserPassword ( )
   {
     //$this->markTestIncomplete();
-    $this->assertTrue( $this->target->CngUserPassword( $this->user, $this->oldpassword, $this->newpassword ) );
+    $this->assertEquals( 1, $this->target->cngUserPassword( $this->user, $this->oldpassword, $this->newpassword ) );
+    $this->assertEquals( 0, $this->target->cngUserPassword( $this->user, $this->oldpassword, $this->oldpassword ));
   }
 
   public function testDelUser ( )
   {
-    $this->assertTrue( $this->target->DelUser( $this->user, $this->password ) );
+    $this->assertEquals( 1, $this->target->delUser( $this->user, $this->newpassword ) );
+    $this->assertEquals( 0, $this->target->delUser( $this->failuser, $this->newpassword ) );    
   }
 
   
