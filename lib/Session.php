@@ -68,7 +68,7 @@ class Session {
   public function start() {
     //session_id();
     //session_cache_limiter('none');
-    session_start();
+    @session_start();
 
     $now = time();
     $lastreq = $this->get('lastreq', $now);		//	前回アクセス時刻を取得
