@@ -20,8 +20,8 @@ class UserTest extends TestCase
   private $regdate = null;
   private $chdate = null;
   private $target = null;
-  public function setUp()
 
+  public function setUp()
   {
     $this->user = 'testadmin';
     $this->failuser = 'aa';

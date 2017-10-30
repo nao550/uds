@@ -15,4 +15,12 @@
   <testsuite name="uds test">
     <directory>./tests</directory>
   </testsuite>
+  <php>
+    <var name="DBDSN" value="mysql:dbname=testuds;host=localhost" />
+    <var name="DBSV" value="localhost" />
+    <var name="DBNM" value="testuds" />
+    <var name="DBUSER" value="testuds" />
+    <var name="DBPASS" value="hhGJzU@Czrn3h3tTD" />
+    <var name="DBDBNAME" value="testuds" />
+  </php>
 </phpunit>

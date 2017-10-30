@@ -31,9 +31,9 @@ class User {
     $this->options = $options;
     $this->encoding = "UTF-8";
     
-    $dsn = 'mysql:host=' . $GLOBALS['CFG']['DBSV'] . ';dbname=' . $GLOBALS['CFG']['DBNM'] . ';charset=utf8';
+    $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
     try{
-      $this->pdo = new PDO($dsn, $GLOBALS['CFG']['DBUSER'], $GLOBALS['CFG']['DBPASS']);
+      $this->pdo = new PDO($dsn, $GLOBALS['DBUSER'], $GLOBALS['DBPASS']);
     } catch (PDOException $e) {
       exit('データベース接続失敗。'.$e->getMessage());
     }
