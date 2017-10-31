@@ -56,7 +56,7 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   {
     // 登録データについては比較せず、件数のみ
     $n = 0;
-    foreach ( $this->target->GetAllQst() as $row ){
+    foreach ( $this->target->getAllQst() as $row ){
       $n++;
     }
     $this->assertEquals(4, $n);

@@ -15,7 +15,7 @@ if ( $session->get('rank') !== "3" ){
 }
 
 $qst = new Qst;
-$arqst = $qst->GetAllQst();
+$arqst = $qst->getAllQst();
 
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('arqst', $arqst );
