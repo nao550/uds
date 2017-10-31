@@ -7,6 +7,11 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   private $num;
   private $type;
   private $question;
+  private $ans1;
+  private $ans2;
+  private $ans3;
+  private $ans4;
+  private $ans5;
   private $arQst;
   private $target;
   
@@ -21,8 +26,13 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   {
     $this->num = 99;
     $this->type = 2;
+    $this->ans1 = $this->ans2 = $this->ans3 = $this->ans4 = $this->ans5 = "選択肢";
     $this->question = "this is question.";
-    $this->arQst = array( 'num' => $this->num, 'type' => $this->type, 'question'=> $this->question );
+    $this->arQst = array( 'num' => $this->num, 'type' => $this->type,
+                          'question'=> $this->question,
+                          'ans1' => $this->ans1, 'ans2' => $this->ans2,
+                          'ans3' => $this->ans3, 'ans4' => $this->ans4,
+                          'ans5' => $this->ans5 );
     $this->target = new Qst;
 
     return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/QstDB.xml');    
@@ -30,21 +40,35 @@ class QstTest extends Generic_Tests_DatabaseTestCase
 
   public function testGetRowCount()
   {
-    $this->assertEquals(8, $this->getConnection()->getRowCount( 'Qst'));
+    $this->assertEquals(4, $this->getConnection()->getRowCount( 'Qst'));
   }
 
-  public function testGetAllQstData()
+  public function testGetAllQstDataset()
   {
     $queryTable = $this->getConnection()->createQueryTable('Qst', 'SELECT * FROM Qst;');
     $expectedTable = $this->createFlatXmlDataSet( __DIR__.'/_files/QstDB.xml')->getTable('Qst');
     $this->assertTablesEqual($expectedTable, $queryTable);
   }
 
+  public function testGetAllQst()
+  {
+    // 登録データについては比較せず、件数のみ
+    $n = 0;
+    foreach ( $this->target->GetAllQst() as $row ){
+      $n++;
+    }
+    $this->assertEquals(4, $n);
+  }
+  
+  
   public function testAddQst ()
   {
     //$this->markTestIncomplete();
     $this->assertEquals(1, $this->target->addQst( $this->arQst) );
-    $this->assertEquals(9, $this->getConnection()->getRowCount( 'Qst'));    
+    foreach ( $this->arQst as $key => $value ){
+      $this->assertEquals($value, $this->target->getSelectedValue( $this->arQst['num'], $key));
+    }
+    $this->assertEquals(5, $this->getConnection()->getRowCount( 'Qst'));    
   }
 
   public function testGetQstStr()
@@ -52,9 +76,24 @@ class QstTest extends Generic_Tests_DatabaseTestCase
     $this->assertEquals( 4, $this->target->getQstStr('2'));
   }
 
-  public function testGetAllQst()
+  public function testUpdateQst()
   {
-    $this->markTestSkipped();
+    $this->target->addQst( $this->arQst);    
+    $this->arQst['ans1'] = 'renewans1';
+    $this->arQst['ans2'] = 'renewans2';
+    $this->arQst['ans3'] = 'renewans3';
+    $this->arQst['ans4'] = 'renewans4';
+    $this->arQst['ans5'] = 'renewans5';
+    $this->assertTrue( $this->target->UpdateQst( $this->arQst ));
+    foreach ( $this->arQst as $key => $value ){
+      $this->assertEquals($value, $this->target->getSelectedValue( $this->arQst['num'], $key));
+    }
+  }
+
+  public function testDelQst()
+  {
+    $this->target->addQst( $this->arQst);    
+    $this->assertTrue( $this->target->delQst( $this->num ));
   }
 }
 

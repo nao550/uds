@@ -1,11 +1,7 @@
 <?xml version="1.0" ?>
 <dataset>
-  <Qst cd="1" num="0" type="1" question="問題1選択肢1" />
-  <Qst cd="2" num="0" type="1" question="問題1選択肢2" />
-  <Qst cd="3" num="0" type="1" question="問題1選択肢3" />
-  <Qst cd="4" num="0" type="1" question="問題1選択肢4" />
-  <Qst cd="5" num="1" type="2" question="問題2選択肢1" />
-  <Qst cd="6" num="1" type="2" question="問題2選択肢2" />
-  <Qst cd="7" num="1" type="2" question="問題2選択肢3" />
-  <Qst cd="8" num="1" type="2" question="問題2選択肢4" />
+  <Qst cd="1" num="1" type="1" question="問題1選択肢1" ans1="解答1" ans2="解凍2" ans3="解答3" ans4="解凍4" ans5="解答5" />
+  <Qst cd="2" num="2" type="1" question="問題2選択肢2" ans1="解答1" ans2="解凍2" ans3="解答3" ans4="解凍4" ans5="解答5" />
+  <Qst cd="3" num="3" type="1" question="問題3選択肢3" ans1="解答1" ans2="解凍2" ans3="解答3" ans4="解凍4" ans5="解答5" />
+  <Qst cd="4" num="4" type="1" question="問題4選択肢4" ans1="解答1" ans2="解凍2" ans3="解答3" ans4="解凍4" ans5="解答5" />
 </dataset>
