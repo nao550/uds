@@ -4,7 +4,9 @@ include_once __DIR__ . '/../../config.php';
 
 $session = new Session;
 $user = new User;
+$qst = new Qst;
 
+$errormode = 0;
 $session->sessionChk( );
 
 if ( $session->get('rank') !== "3" ){
@@ -20,5 +22,3 @@ $smarty->assign('arqst', $arqst );
 $smarty->assign('errormode', $errormode);
 $smarty->display('file:admin/qst.tpl');
 
-
-?>

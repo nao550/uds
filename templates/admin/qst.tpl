@@ -37,19 +37,21 @@
                   {/if}
                   <tr>
                     <td class="center" style="vertical-align: middle;">{$qst.cd}</td>
-                    <td>{$qst.question}></td>
+                    <td>{$qst.question}</td>
                     <td class="center" style="vertical-align: middle;">{$qst.type}</td>
                     <td class="center" style="vertical-align: middle;">
                       <table class="table table-bordered">
                         <tbody>
-                          {foreach $qst.choicestr as $choice}
-                            <tr><td class="left">{$choice}</td></tr>
-                          {/foreach}
+                            <tr><td class="left">{$qst.ans1}</td></tr>
+                            <tr><td class="left">{$qst.ans2}</td></tr>
+                            <tr><td class="left">{$qst.ans3}</td></tr>
+                            <tr><td class="left">{$qst.ans4}</td></tr>
+                            <tr><td class="left">{$qst.ans5}</td></tr>
                         </tbody>
                       </table>
                     </td>
                     <td class="center" style="vertical-align: middle;">
-                      <form action="#" method="post">
+                      <form action="qstedit.php" method="post">
                         <input type="hidden" name="qstnum" value="{$qst.num}" />
                         <button class="btn btn-default">編集</button>
                       </form>
@@ -58,7 +60,7 @@
                 {/foreach}
               </tbody>
             </table>
-            <form class="form" action="addqst.php" mthod="post">
+            <form class="form" action="qstadd.php" mthod="post">
               <button class="btn btn-default" type="submit">新規登録</button>
             </form>
           </div>
