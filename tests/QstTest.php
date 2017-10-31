@@ -4,6 +4,7 @@ require_once __DIR__.'/Generic_Tests_DatabaseTestCase.php';
 
 class QstTest extends Generic_Tests_DatabaseTestCase
 {
+  private $cd;
   private $num;
   private $type;
   private $question;
@@ -24,6 +25,7 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   **/
   public function getDataSet()
   {
+    $this->cd = '';
     $this->num = 99;
     $this->type = 2;
     $this->ans1 = $this->ans2 = $this->ans3 = $this->ans4 = $this->ans5 = "選択肢";
@@ -73,7 +75,9 @@ class QstTest extends Generic_Tests_DatabaseTestCase
 
   public function testGetQstStr()
   {
-    $this->assertEquals( 4, $this->target->getQstStr('2'));
+    $this->target->addQst( $this->arQst );
+    $this->arQst['cd'] = $this->target->getSelectedValue( $this->num, 'cd');
+    $this->assertEquals( $this->arQst, $this->target->getQstStr($this->num));
   }
 
   public function testUpdateQst()

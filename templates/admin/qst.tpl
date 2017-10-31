@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="header">
-            <div class="pagetitle">アンケート編集</div>
+            <div class="pagetitle">アンケート管理ページ</div>
           </div>
         </div>
       </div>
@@ -13,9 +13,9 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="menu">
-            <form class="form" action="top.php" method="POST">
-              <button class="btn btn-default" type="submit" name="mode" value="editQst">問題編集</button>
-            </form>
+            <a href="top.php">
+              <button class="btn btn-default">問題編集</button>
+            </a>
           </div>
         </div>
       </div>
@@ -23,8 +23,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <table class="table table-bordered">
-              <tbody>
+            <table class="table table-bordered"              <tbody>
                 {foreach $arqst as $qst}
                   {if $qst@first}
                     <tr>
@@ -37,8 +36,14 @@
                   {/if}
                   <tr>
                     <td class="center" style="vertical-align: middle;">{$qst.cd}</td>
-                    <td>{$qst.question}</td>
-                    <td class="center" style="vertical-align: middle;">{$qst.type}</td>
+                    <td>{$qst.question|nl2br}</td>
+                    <td class="center" style="vertical-align: middle;">
+                      {if $qst.type eq '1'}
+                        択一選択
+                      {else}
+                        複数選択
+                      {/if}
+                    </td>
                     <td class="center" style="vertical-align: middle;">
                       <table class="table table-bordered">
                         <tbody>
@@ -52,7 +57,8 @@
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <form action="qstedit.php" method="post">
-                        <input type="hidden" name="qstnum" value="{$qst.num}" />
+                        <input type="hidden" name="num" value="{$qst.num}" />
+                        <input type="hidden" name="sid" value="{$sid}" />
                         <button class="btn btn-default">編集</button>
                       </form>
                     </td>

@@ -14,4 +14,13 @@ td.center {
     text-align: center;    
 }
 
+.qsttxt {
+    width: 100%;
+    height: 15em;
+}
+
+.anstxt {
+    width: 100%;
+}
+
 
