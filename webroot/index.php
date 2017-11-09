@@ -1,18 +1,17 @@
 <?php
-session_cache_limiter('none');
-session_start();
-if ( ! isset($_SESSION['id'])){
-  $_SESSION['id'] = session_id();
-}
-
-include_once '../vendor/autoload.php';
+namespace morris;
 include_once '../config.php';
+$session = new Session;
+$user = new User;
 
-isset( $_POST['gakusekinum']) ? $gakusekinum = $_POST['gakusekinum'] : $gakusekinum = 'testnum';
+$errormode = 0;
+$session->sessionChk( );
+
+$gakusekinum = "hoge";
 
 $smarty->assign('gakusekinum', $gakusekinum);
 
-$smarty->display('toppage.tpl');
+$smarty->display('index.tpl');
 
 
 ?>
