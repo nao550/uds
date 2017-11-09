@@ -9,7 +9,7 @@ window.onload = function errchk(){
 
 function qstadd(){
     if(window.confirm("アンケートを追加します。よろしいですか？")){
-        return true;
+        document.qstaddfrm.submit();
     } else {
         return false;
     }
@@ -17,6 +17,7 @@ function qstadd(){
 
 function qstupdate(){
     if(window.confirm("アンケートを更新します。よろしいですか？")){
+        document.qsteditfrm.submit();
         return true;
     } else {
         return false;
@@ -25,6 +26,7 @@ function qstupdate(){
 
 function qstdel(){
     if(window.confirm("問題を削除します。よろしいですか？")){
+        document.qstdelfrm.submit();
         return true;
     } else {
         return false;

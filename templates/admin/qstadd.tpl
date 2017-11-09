@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <form action="qstadd.php" method="post">            
+            <form name="qstaddfrm" action="qstadd.php" method="post">            
               <table class="table table-bordered">
                 <tbody>
                   <tr>
@@ -59,7 +59,7 @@
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <input type="hidden" name="mode" value="qstadd" />
-                      <button type="submit" class="btn btn-default" name="mode" value="qstadd" onClick="qstadd()">追加</button>
+                      <button type="button" class="btn btn-default" name="mode" value="qstadd" onClick="qstadd()">追加</button>
                       <br /><br />
                     </td>
             </form>                    
@@ -74,6 +74,5 @@
 
     </div>
 
-  </body>
 {include file='footer.tpl'}
   

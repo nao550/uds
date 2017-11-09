@@ -64,7 +64,7 @@ class Qst {
   }
 
   function getQstStr( $num ){
-    $sql = "SELECT * FROM Qst WHERE num = :num;";
+    $sql = "SELECT * FROM Qst WHERE num = :num; ORDER BY num ASC";
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':num', $num, PDO::PARAM_INT);
     $stm->execute();

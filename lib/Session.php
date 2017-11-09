@@ -27,6 +27,7 @@ class Session {
     }
     //	タイムアウト時間が指定されていないときは
     //	セッションガーベジコレクタの時間をセッションタイムアウト時間とする
+    $this->timeout = 3600; // タイムアウト秒
     $gc_maxlifetime = ini_get('session.gc_maxlifetime');
     $this->timeout = $gc_maxlifetime;
     if(is_array($params) && count($params) > 0){

@@ -2,18 +2,17 @@
 namespace morris;
 include_once '../config.php';
 $session = new Session;
+$qst = new Qst;
 $user = new User;
+
+var_dump( $_POST );
 
 $errormode = 0;
 $session->sessionChk( );
 
 $gakusekinum = "hoge";
+$arqst = $qst->getAllQst();
 
-// 未解答、解答済かつ合格、解凍済かつ不合格 の3パターン判別
-// ボタンの表示変更する
-
+$smarty->assign('arqst', $arqst);
 $smarty->assign('gakusekinum', $gakusekinum);
-$smarty->display('index.tpl');
-
-
-?>
+$smarty->display('top.tpl');

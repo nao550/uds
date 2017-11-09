@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <form action="qstedit.php" method="post">            
+            <form name="qsteditfrm" action="qstedit.php" method="post">
               <table class="table table-bordered">
                 <tbody>
                   <tr>
@@ -64,16 +64,21 @@
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <input type="hidden" name="num" value="{$arqst.num}" />
-                      <button type="submit" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
+                      <input type="hidden" name="mode" value="qstupdate" />
+                      <button type="button" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
                       <br /><br />
                     </td>
-            </form>                    
                   </tr>
                 </tbody>
               </table>
+            </form>                                  
               <div class="row">
                 <div class="col-md-12">
-                  <button type="submit" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
+                  <form name="qstdelfrm" action="qstedit.php" method="post">
+                    <input type="hidden" name="num" value="{$arqst.num}" />                    
+                    <input type="hidden" name="mode" value="qstdel" />                    
+                    <button type="button" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
+                    </form>
                 </div>
               </div>
             </form>

@@ -23,7 +23,8 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <table class="table table-bordered"              <tbody>
+            <table class="table table-bordered">
+              <tbody>
                 {foreach $arqst as $qst}
                   {if $qst@first}
                     <tr>
@@ -76,6 +77,5 @@
 
     </div>
 
-  </body>
 {include file='footer.tpl'}
   
