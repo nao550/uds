@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="header">
-            <div class="pagetitle"><h1>アンケート編集</h1></div>
+            <div class="pagetitle"><h1>アンケート追加</h1></div>
           </div>
         </div>
       </div>
@@ -26,7 +26,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <form action="qstedit.php" method="post">            
+            <form action="qstadd.php" method="post">            
               <table class="table table-bordered">
                 <tbody>
                   <tr>
@@ -38,44 +38,34 @@
                   </tr>
 
                   <tr>
-                    <td class="center" style="vertical-align: middle;">{$arqst.num}</td>
-                    <td><textarea class="qsttxt" name="question" >{$arqst.question}</textarea></td>
+                    <td class="center" style="vertical-align: middle;"></td>
+                    <td><textarea class="qsttxt" name="question" ></textarea></td>
                     <td class="center" style="vertical-align: middle;">
                       <select name="type">
-                        {if $arqst.type eq '1'}
-                          <option value="1" selected>単一選択</option>
-                          <option value="2">複数選択</option>
-                        {elseif $arqst.type eq '2'}
                           <option value="1">単一選択</option>
-                          <option value="2" selected>複数選択</option>
-                        {/if}
+                          <option value="2">複数選択</option>       
                       </select>
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <table class="table table-bordered">
                         <tbody>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans1" value="{$arqst.ans1}" /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans2" value="{$arqst.ans2}" /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans3" value="{$arqst.ans3}" /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans4" value="{$arqst.ans4}" /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans5" value="{$arqst.ans5}" /></td></tr>
+                          <tr><td class="left"><input type="text" class="anstxt" name="ans1"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="anstxt" name="ans2"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="anstxt" name="ans3"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="anstxt" name="ans4"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="anstxt" name="ans5"  /></td></tr>
                         </tbody>
                       </table>
                     </td>
                     <td class="center" style="vertical-align: middle;">
-                      <input type="hidden" name="num" value="{$arqst.num}" />
-                      <button type="submit" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
+                      <input type="hidden" name="mode" value="qstadd" />
+                      <button type="submit" class="btn btn-default" name="mode" value="qstadd" onClick="qstadd()">追加</button>
                       <br /><br />
                     </td>
             </form>                    
                   </tr>
                 </tbody>
               </table>
-              <div class="row">
-                <div class="col-md-12">
-                  <button type="submit" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
-                </div>
-              </div>
             </form>
           </div>
         </div>

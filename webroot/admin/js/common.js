@@ -7,6 +7,14 @@ window.onload = function errchk(){
     }
 }
 
+function qstadd(){
+    if(window.confirm("アンケートを追加します。よろしいですか？")){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function qstupdate(){
     if(window.confirm("アンケートを更新します。よろしいですか？")){
         return true;

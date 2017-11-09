@@ -45,7 +45,10 @@ $smarty->setTemplateDir($CFG['HOMEDIR'] . 'templates/');
 $smarty->setCompileDir($CFG['HOMEDIR'] . 'templates_c/');
 $smarty->setConfigDir($CFG['HOMEDIR'] . 'configs/');
 $smarty->setCacheDir($CFG['HOMEDIR'] . 'cache/');
+$smarty->escape_html = true;  // 全てのテンプレート変数出力にHTMLエスケープを適用
+// {$value nofilter} nofilter でエスケープが無効になる
 // $smarty->setPluginsDir( $CFG['HOMEDIR'] . 'plugins/' )
+// {{$value}|nl2br nofilter} でエスケープしてnl2brを設定
 $smarty->assign("page_title", $CFG['SITENAME']);
 $smarty->debugging = false;
 

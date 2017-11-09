@@ -13,6 +13,7 @@ use PDO;
 
 class Qst {
   private $pdo;
+  private $seqnum;
   
   function __construct(){
     $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
@@ -46,6 +47,9 @@ class Qst {
   
   function addQst ( $arQst )
   {
+    $seqnum = new Seqnum;
+    $arQst['num'] = $seqnum->getSeqnum ('qst');
+    
     $sql = 'INSERT INTO Qst (num, type, question, ans1, ans2, ans3, ans4, ans5 ) VALUES ( :num, :type, :question, :ans1, :ans2, :ans3, :ans4, :ans5);';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':num', $arQst['num'], PDO::PARAM_INT);
@@ -82,7 +86,8 @@ class Qst {
     $stm->bindValue(':ans4', $arQst['ans4'], PDO::PARAM_STR);    
     $stm->bindValue(':ans5', $arQst['ans5'], PDO::PARAM_STR);    
     $stm->bindValue(':num', $arQst['num'], PDO::PARAM_INT);
-    return ($stm->execute());
+    $stm->execute();
+    return true;
   }
 
   function delQst( $num )

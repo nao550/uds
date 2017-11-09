@@ -45,6 +45,7 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   {
     $this->target->getSeqnum('test');
     $this->assertEquals(2, $this->target->nextSeqnum( 'test' ));
+    $this->assertFalse( $this->target->nextSeqnum( 'test4'));
   }
 
   public function testSetSeqnum()
@@ -56,6 +57,8 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   public function testInitSeqnum()
   {
     $this->assertEquals(1, $this->target->initSeqnum( 'test2' ));
+    $this->assertEquals(2, $this->target->getSeqnum( 'test2' ));
+    $this->assertFalse( $this->target->initSeqnum( 'test' ));   
 //    $this->assertFalase($this->target->initSeqnum( 'test' ));
   }
  

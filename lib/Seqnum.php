@@ -1,7 +1,7 @@
 <?php
 /* シーケンス番号管理クラス
    _construct()
-   bint getSeqnum( str );
+   bint getSeqnum( str ); // 現在の数++を返す
    bint nextSeqnum( str );
    setSeqnum ( str, bint );
 */
@@ -34,8 +34,9 @@ class Seqnum {
     $stm->bindValue(':nm', $nm, PDO::PARAM_STR);
     $stm->execute();
     $row = $stm->fetch(PDO::FETCH_ASSOC);
-    if ( empty($row)){  // $nm がなければ新しく追加
-      return $this->initSeqnum( $nm );
+    if ( $stm->rowCount() === 0 ){  // $nm がなければ新しく追加
+      $num = $this->initSeqnum( $nm );
+      return $num;
     }
     $num = $row['seq'];
     $next = $num + 1;
@@ -61,6 +62,9 @@ class Seqnum {
     $stm->bindValue(':nm', $nm, PDO::PARAM_STR);
     $stm->execute();
     $row = $stm->fetch(PDO::FETCH_ASSOC);
+    if ( $stm->rowCount() === 0 ){
+      return false;
+    }
     $num = $row['seq'];
     return $num;
   }
@@ -82,14 +86,13 @@ class Seqnum {
   
   public function initSeqnum( $nm )
   {
-    if( empty($this->nextSeqnum( $nm ))){
-      $sql = "INSERT INTO Seqnum ['seq', 'nm'] value (1, :nm);";
+    if( $this->nextSeqnum( $nm ) === false ){
+      $sql = "INSERT INTO Seqnum (seq, nm) VALUES (2, :nm);";
       $stm = $this->pdo->prepare( $sql );
       $stm->bindValue(':nm', $nm, PDO::PARAM_STR);
       $stm->execute();
       return 1;
     }
-    echo 'match false.';
     return false;
   }
 }

@@ -5,6 +5,15 @@
     margin-top: 10px;
 }
 
+.pagetitle {
+}
+
+h1 {
+    font-size: 130%;
+    font-weight: bold;
+    color: #333;
+}
+
 th {
     text-align: center;
 }

@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="header">
-            <div class="pagetitle">アンケート管理ページ</div>
+            <div class="pagetitle"><h1>アンケート管理ページ</h1></div>
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@
                     </tr>
                   {/if}
                   <tr>
-                    <td class="center" style="vertical-align: middle;">{$qst.cd}</td>
-                    <td>{$qst.question|nl2br}</td>
+                    <td class="center" style="vertical-align: middle;">{$qst.num}</td>
+                    <td>{{$qst.question}|nl2br nofilter}</td>
                     <td class="center" style="vertical-align: middle;">
                       {if $qst.type eq '1'}
                         択一選択
