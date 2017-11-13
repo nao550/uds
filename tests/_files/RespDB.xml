@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<dataset>
+  <Resp cd="1" uid="000555" qstcd="1" type="1" ans="1" regdate="2017-11-1" />
+  <Resp cd="2" uid="000555" qstcd="2" type="1" ans="2" regdate="2017-11-1" />
+  <Resp cd="3" uid="000555" qstcd="3" type="1" ans="2" regdate="2017-11-1" />
+</dataset>
