@@ -41,20 +41,26 @@
                     <td class="center" style="vertical-align: middle;">
                       {if $qst.type eq '1'}
                         択一選択
-                      {else}
+                      {elseif $qst.type eq '2'}
                         複数選択
+                      {elseif $qst.type eq '3'}
+                        文字入力
                       {/if}
                     </td>
                     <td class="center" style="vertical-align: middle;">
-                      <table class="table table-bordered">
-                        <tbody>
+                      {if $qst.type eq '1' or $qst.type eq '2'}
+                        <table class="table table-bordered">
+                          <tbody>
                             <tr><td class="left">{$qst.ans1}</td></tr>
                             <tr><td class="left">{$qst.ans2}</td></tr>
                             <tr><td class="left">{$qst.ans3}</td></tr>
                             <tr><td class="left">{$qst.ans4}</td></tr>
                             <tr><td class="left">{$qst.ans5}</td></tr>
-                        </tbody>
-                      </table>
+                          </tbody>
+                        </table>
+                      {elseif $qst.type eq '3'}
+                        <textarea disabled></textarea>
+                      {/if}
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <form action="qstedit.php" method="post">

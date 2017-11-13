@@ -41,10 +41,10 @@
                     <td class="center" style="vertical-align: middle;"></td>
                     <td><textarea class="qsttxt" name="question" ></textarea></td>
                     <td class="center" style="vertical-align: middle;">
-                      <select name="type">
+                      <select name="type" style="height:2em">
                           <option value="1">単一選択</option>
-                          <option value="2">複数選択</option>       
-                      </select>
+                          <option value="2">複数選択</option>
+                          <option value="3">文字入力</option>                      </select>
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <table class="table table-bordered">

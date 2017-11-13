@@ -40,14 +40,20 @@
                   <tr>
                     <td class="center" style="vertical-align: middle;">{$arqst.cd}</td>
                     <td><textarea class="qsttxt" name="question" >{$arqst.question}</textarea></td>
-                    <td class="center" style="vertical-align: middle;">
-                      <select name="type">
+                    <td class="col-md-1" style="vertical-align: middle;">
+                      <select name="type" style="height:2em">
                         {if $arqst.type eq '1'}
                           <option value="1" selected>単一選択</option>
                           <option value="2">複数選択</option>
+                          <option value="3">文字入力</option>
                         {elseif $arqst.type eq '2'}
                           <option value="1">単一選択</option>
                           <option value="2" selected>複数選択</option>
+                          <option value="3">文字入力</option>
+                        {elseif $arqst.type eq '3'}
+                          <option value="1">単一選択</option>
+                          <option value="2">複数選択</option>
+                          <option value="3" selected>文字入力</option>
                         {/if}
                       </select>
                     </td>
