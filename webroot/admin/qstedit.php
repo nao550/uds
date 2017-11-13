@@ -14,7 +14,7 @@ if ( $session->get('rank') !== "3" ){
   header( $admintop, true, 303);
 }
 
-if ( empty(getPost('num'))){
+if ( empty(getPost('cd'))){
   $admintop = 'location: qst.php';
   header( $admintop, true, 303);
 }
@@ -28,13 +28,13 @@ if ( getPost('mode') === 'qstupdate'){
 
 // 削除
 if ( getPost('mode') === 'qstdel'){
-  $qst->delQst( getPost('num') );
+  $qst->delQst( getPost('cd') );
   $admintop = 'location: qst.php';
   header( $admintop, true, 303);
 }
 
 $qst = new Qst;
-$arqst = $qst->GetQstStr(getPost('num'));
+$arqst = $qst->GetQstStr(getPost('cd'));
 
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('arqst', $arqst );

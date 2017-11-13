@@ -36,7 +36,7 @@
                     </tr>
                   {/if}
                   <tr>
-                    <td class="center" style="vertical-align: middle;">{$qst.num}</td>
+                    <td class="center" style="vertical-align: middle;">{$qst.cd}</td>
                     <td>{{$qst.question}|nl2br nofilter}</td>
                     <td class="center" style="vertical-align: middle;">
                       {if $qst.type eq '1'}
@@ -58,9 +58,9 @@
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <form action="qstedit.php" method="post">
-                        <input type="hidden" name="num" value="{$qst.num}" />
+                        <input type="hidden" name="cd" value="{$qst.cd}" />
                         <input type="hidden" name="sid" value="{$sid}" />
-                        <button class="btn btn-default">編集</button>
+                        <button type="submit" class="btn btn-default">編集</button>
                       </form>
                     </td>
                   </tr>

@@ -38,7 +38,7 @@
                   </tr>
 
                   <tr>
-                    <td class="center" style="vertical-align: middle;">{$arqst.num}</td>
+                    <td class="center" style="vertical-align: middle;">{$arqst.cd}</td>
                     <td><textarea class="qsttxt" name="question" >{$arqst.question}</textarea></td>
                     <td class="center" style="vertical-align: middle;">
                       <select name="type">
@@ -63,7 +63,7 @@
                       </table>
                     </td>
                     <td class="center" style="vertical-align: middle;">
-                      <input type="hidden" name="num" value="{$arqst.num}" />
+                      <input type="hidden" name="cd" value="{$arqst.cd}" />
                       <input type="hidden" name="mode" value="qstupdate" />
                       <button type="button" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
                       <br /><br />
@@ -75,7 +75,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <form name="qstdelfrm" action="qstedit.php" method="post">
-                    <input type="hidden" name="num" value="{$arqst.num}" />                    
+                    <input type="hidden" name="cd" value="{$arqst.cd}" />                    
                     <input type="hidden" name="mode" value="qstdel" />                    
                     <button type="button" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
                     </form>

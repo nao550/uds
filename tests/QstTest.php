@@ -5,7 +5,6 @@ require_once __DIR__.'/Generic_Tests_DatabaseTestCase.php';
 class QstTest extends Generic_Tests_DatabaseTestCase
 {
   private $cd;
-  private $num;
   private $type;
   private $question;
   private $ans1;
@@ -25,12 +24,11 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   **/
   public function getDataSet()
   {
-    $this->cd = '';
-    $this->num = 99;
+    $this->cd = '5';
     $this->type = 2;
     $this->ans1 = $this->ans2 = $this->ans3 = $this->ans4 = $this->ans5 = "選択肢";
     $this->question = "this is question.";
-    $this->arQst = array( 'num' => $this->num, 'type' => $this->type,
+    $this->arQst = array( 'cd'=>$this->cd, 'type' => $this->type,
                           'question'=> $this->question,
                           'ans1' => $this->ans1, 'ans2' => $this->ans2,
                           'ans3' => $this->ans3, 'ans4' => $this->ans4,
@@ -67,17 +65,18 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   {
     //$this->markTestIncomplete();
     $this->assertEquals(1, $this->target->addQst( $this->arQst) );
+    $cd = $this->target->getLastInsertId();
     foreach ( $this->arQst as $key => $value ){
-      $this->assertEquals($value, $this->target->getSelectedValue( $this->arQst['num'], $key));
+      $this->assertEquals($value, $this->target->getSelectedValue( $cd, $key));
     }
-    $this->assertEquals(5, $this->getConnection()->getRowCount( 'Qst'));    
+    $this->assertEquals(5, $this->getConnection()->getRowCount( 'Qst'));
   }
 
   public function testGetQstStr()
   {
     $this->target->addQst( $this->arQst );
-    $this->arQst['cd'] = $this->target->getSelectedValue( $this->num, 'cd');
-    $this->assertEquals( $this->arQst, $this->target->getQstStr($this->num));
+    $cd = $this->target->getLastInsertId();    
+    $this->assertEquals( $this->arQst, $this->target->getQstStr($cd));
   }
 
   public function testUpdateQst()
@@ -90,14 +89,14 @@ class QstTest extends Generic_Tests_DatabaseTestCase
     $this->arQst['ans5'] = 'renewans5';
     $this->assertTrue( $this->target->UpdateQst( $this->arQst ));
     foreach ( $this->arQst as $key => $value ){
-      $this->assertEquals($value, $this->target->getSelectedValue( $this->arQst['num'], $key));
+      $this->assertEquals($value, $this->target->getSelectedValue( $this->arQst['cd'], $key));
     }
   }
 
   public function testDelQst()
   {
     $this->target->addQst( $this->arQst);    
-    $this->assertTrue( $this->target->delQst( $this->num ));
+    $this->assertTrue( $this->target->delQst( $this->cd ));
   }
 }
 
