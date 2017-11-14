@@ -8,7 +8,7 @@
         <div class="header">
           <div class="pagetitle"><h1>理解度調査アンケート</h1></div>
         </div>
-        {$gakusekinum} さん        
+        {$uid} さん        
       </div>
     </div>
 
@@ -22,9 +22,9 @@
   </div>
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <form action="top.php" method="POST" name="indexform" >
-        <input class="form-control" type="hidden" name="gakusekinum" value="{$gakusekinum}" />
-        <button type="submit" class="btn btn-default">理解度調査開始</button>
+      <form action="qsttop.php" method="POST" name="indexform" >
+        <input class="form-control" type="hidden" name="uid" value="{$uid}" />
+        <button type="submit" class="btn btn-default">アンケート</button>
         
       </form>
     </div>

@@ -1,6 +1,7 @@
 <?php
 use morris\Resp;
 require_once __DIR__.'/Generic_Tests_DatabaseTestCase.php';
+require_once __DIR__.'/../lib/functions.php';
 
 class RespTest extends Generic_Tests_DatabaseTestCase
 {
@@ -21,7 +22,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->uid = '000555';
     $this->qstcd = 4;
     $this->type = 2;
-    $this->ans = '1|2';
+    $this->ans = '12';
     $this->arResp = array( 'uid'=>$this->uid,
                            'qstcd' => $this->qstcd,
                            'type' => $this->type,
@@ -39,9 +40,15 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     foreach ( $this->arResp as $key => $value ){
       $this->assertEquals($value, $this->target->getSelectedValue( $cd, $key));
     }
-    $this->assertEquals(4, $this->getConnection()->getRowCount( 'Qst'));
+    $this->assertEquals(4, $this->getConnection()->getRowCount( 'Resp'));
+  }
+
+  public function testFmtResp (){
+    $_POST = $this->arResp;
+    $this->assertTrue( $this->target->fmtResp ());
   }
 }
+
 
 
 /*  
