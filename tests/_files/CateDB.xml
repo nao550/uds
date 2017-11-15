@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<dataset>
+  <Cate cd='1' nm="カテゴリ1" />
+  <Cate cd='2' nm="カテゴリ2" />  
+</dataset>
