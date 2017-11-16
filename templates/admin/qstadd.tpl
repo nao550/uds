@@ -67,6 +67,7 @@
                 </tbody>
               </table>
             </form>
+            <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>
           </div>
         </div>
         <div class="col-md-1"></div>

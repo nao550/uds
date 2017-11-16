@@ -84,6 +84,7 @@
                     <input type="hidden" name="cd" value="{$arqst.cd}" />                    
                     <input type="hidden" name="mode" value="qstdel" />                    
                     <button type="button" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
+                    <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>                    
                     </form>
                 </div>
               </div>
