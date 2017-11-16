@@ -43,7 +43,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
 
   public function testAddCate ()
   {
-    $this->assertEquals(1, $this->target->addCate( $this->nm) );
+    $this->assertEquals(1, $this->target->addCate( $this->nm ) );
     $cd = $this->target->getLastInsertId();
     $this->assertEquals($this->nm, $this->target->getSelectedValue( $cd, 'nm' ));
     $this->assertEquals(3, $this->getConnection()->getRowCount( 'Cate'));
@@ -54,15 +54,15 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->target->addCate( $this->nm );
     $this->arStr['cd'] = $this->target->getlastinsertId();
     $this->arStr['nm'] = 'カテゴリごり';
-    $this->assertTrue( $this->target->UpdateCate( $this->arStr ));
-    $this->assertEquals($this->arStr['nm'], $this->target->getSelectedValue($this->arStr['cd'], 'nm'));
+    $this->assertTrue( $this->target->UpdateCate( $this->arStr['cd'], $this->arStr['nm'] ));
+    $this->assertEquals($this->arStr['nm'] , $this->target->getSelectedValue($this->arStr['cd'], 'nm'));
   }
 
   public function testDelCate()
   {
-    $this->target->addCate( $this->nm);
-    $this->arStr['cd'] = $this->target->getlastinsertId();
-    $this->assertTrue( $this->target->delCate( $this->arStr['cd'] ));
+    $this->target->addCate( $this->nm );
+    $cd = $this->target->getlastinsertId();
+    $this->assertTrue( $this->target->delCate( $cd ));
   }
 
 }

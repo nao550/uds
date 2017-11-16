@@ -37,11 +37,11 @@ class Cate {
    * @param array as added data array.
    * @return boolen.
   */
-  function addCate ( $Str )
+  function addCate ( $nm )
   {
     $sql = 'INSERT INTO Cate ( nm ) VALUES (:nm );';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':nm', $Str, PDO::PARAM_STR);
+    $stm->bindValue(':nm', $nm, PDO::PARAM_STR);
     return ($stm->execute());
   }
 
@@ -55,11 +55,12 @@ class Cate {
   }
   
 
-  function updateCate( $arStr ){
+  function updateCate( $cd, $nm ){
+    
     $sql = 'UPDATE Cate SET nm = :nm where cd = :cd ;';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':cd', $arStr['cd'], PDO::PARAM_INT);
-    $stm->bindValue(':nm', $arStr['nm'], PDO::PARAM_STR);        
+    $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
+    $stm->bindValue(':nm', $nm, PDO::PARAM_STR);        
     $stm->execute();
     return true;
   }
