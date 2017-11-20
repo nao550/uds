@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <dataset>
-  <Cate cd='1' nm="カテゴリ1" />
-  <Cate cd='2' nm="カテゴリ2" />  
+  <Cate cd='1' num="1" nm="カテゴリ1" mstflag="false" mstten="0" />
+  <Cate cd='2' num="2" nm="カテゴリ2" mstflag="false" mstten="0" />
+  <Cate cd='3' num="3" nm="カテゴリ3" mstflag="ture" mstten="80" />    
 </dataset>

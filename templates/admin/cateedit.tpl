@@ -20,14 +20,16 @@
       </div>
          
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
           <div class="main">
             <table class="table table-bordered">
               <tbody>
                 <tr>
-                  <th class="col-md-2">#</th>
-                  <th class="col-md-8">カテゴリ</th>
-                  <th class="col-md-2">*</th>
+                  <th class="col-md-1">#</th>
+                  <th class="col-md-6">カテゴリ名</th>
+                  <th class="col-md-2">必須</th>
+                  <th class="col-md-2">達成点数</th>
+                  <th class="col-md-1">*</th>
                 </tr>
                 <form action="cate.php" method="post">                
                   <tr>
@@ -36,6 +38,13 @@
                       {$arCate.cd}
                     </td>
                     <td><input type="text" class="form-control" name="nm" value="{{$arCate.nm}|nl2br nofilter}" /></td>
+                    <td class="center" style="vertical-align: middle;">
+                      {if $arCate.mstflag eq 1}
+                        <input class="form-control" type="checkbox" name="mstflag" checked="checked" /></td>
+                      {elseif $arCate.mstflag eq 0}
+                        <input class="form-control" type="checkbox" name="mstflag" /></td>
+                      {/if}
+                    <td class="center" style="vertical-align: middle;"><input class="form-control" type="text" name="mstten" value="{$arCate.mstten}" /> </td>
                     <td class="center" style="vertical-align: middle;">
                       <input type="hidden" name="sid" value="{$sid}" />
                       <input type="hidden" name="mode" value="update" />

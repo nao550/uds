@@ -27,14 +27,25 @@
                 {foreach $arCate as $cate}
                   {if $cate@first}
                     <tr>
-                      <th class="col-md-2">#</th>
-                      <th class="col-md-8">カテゴリ</th>
-                      <th class="col-md-2">*</th>
+                      <th class="col-md-1">#</th>
+                      <th class="col-md-6">カテゴリ名</th>
+                      <th class="col-md-2">必須</th>
+                      <th class="col-md-2">達成点数</th>
+                      <th class="col-md-1">*</th>
                     </tr>
                   {/if}
                   <tr>
                     <td class="center" style="vertical-align: middle;">{$cate.cd}</td>
                     <td style="vertical-align: middle;">{{$cate.nm}|nl2br nofilter}</td>
+                    <td class="center" style="vertical-align: middle;">                    
+                      {if $cate.mstflag eq 1}
+                        <input type="checkbox" name="mstflag" checked="checked" disabled="disabled" />
+                      {elseif $cate.mstflag eq 0}
+                        <input type="checkbox" name="mstflag" disabled="disabled" />
+                      {/if}
+                    </td>
+                    <td class="center" style="vertical-align: middle;">{$cate.mstten}</td>
+
                     <td class="center" style="vertical-align: middle;">
                       <form action="cate.php" method="post">
                         <input type="hidden" name="cd" value="{$cate.cd}" />

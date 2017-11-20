@@ -23,6 +23,21 @@ class Cate {
     }
   }
 
+  function arStrFmt( $arStr ){
+    // 受けとった arStr はpostなのでサニタイズする必要がある
+    // // FILTER_SQANITIZE_ENCODE で文字化けする？
+    $def = array(
+      'cd' => FILTER_VALIDATE_INT,
+      'num' => FILTER_SANITIZE_ENCODED,
+      'nm' => FILTER_DEFAULT,
+      'mstflag' => FILTER_VALIDATE_BOOLEAN,
+      'mstten' => FILTER_VALIDATE_INT
+    );
+    $arCate = filter_var_array( $arStr, $def );
+
+    return $arCate;
+  }
+  
   /* Get all Categorys
    * @return array
    */
@@ -30,23 +45,36 @@ class Cate {
   {
     $sql = "SELECT * FROM Cate;";
     $stm = $this->pdo->query( $sql );
-    return($stm->fetchAll(PDO::FETCH_ASSOC));
+    $row = $stm->fetchAll(PDO::FETCH_ASSOC);
+    return $row;
   }
 
   /* add array
    * @param array as added data array.
    * @return boolen.
   */
-  function addCate ( $nm )
+  function addCate ( $arStr )
   {
-    $sql = 'INSERT INTO Cate ( nm ) VALUES (:nm );';
+
+    $arCate = $this->arStrFmt( $arStr );
+    $num = $this->countCate() + 1; // 現在のレコード数の次の数を取得
+    
+    $sql = 'INSERT INTO Cate (`num`, `nm`, `mstflag`, `mstten` ) VALUES (:num, :nm, :mstflag, :mstten );';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':nm', $nm, PDO::PARAM_STR);
+    $stm->bindValue(':num', $arCate['num'], PDO::PARAM_INT);
+    $stm->bindValue(':nm', $arCate['nm'], PDO::PARAM_STR);
+    $stm->bindValue(':mstflag', $arCate['mstflag'], PDO::PARAM_BOOL);
+    $stm->bindValue(':mstten', $arCate['mstten'], PDO::PARAM_INT);
     return ($stm->execute());
   }
 
+  /* getCateStr
+   * cd のデータを返す、なければfalse
+   * @param int
+   * @return array
+   */
   function getCateStr( $cd ){
-    $sql = "SELECT * FROM Cate WHERE cd = :cd; ORDER BY cd ASC";
+    $sql = "SELECT * FROM Cate WHERE cd = :cd;";
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
     $stm->execute();
@@ -54,15 +82,23 @@ class Cate {
     return $row;
   }
   
+  /* updateCate
+   * 引数でテーブルを更新
+   * @param arrray as Cate array.
+   * @return boolen
+   */
+  function updateCate( $arStr ){
 
-  function updateCate( $cd, $nm ){
+    $arCate = $this->arStrFmt( $arStr );
     
-    $sql = 'UPDATE Cate SET nm = :nm where cd = :cd ;';
+    $sql = 'UPDATE Cate SET num = :num, nm = :nm, mstflag = :mstflag, mstten = :mstten  where cd = :cd ;';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
-    $stm->bindValue(':nm', $nm, PDO::PARAM_STR);        
-    $stm->execute();
-    return true;
+    $stm->bindValue(':cd', $arCate['cd'], PDO::PARAM_INT);
+    $stm->bindValue(':num', $arCate['num'], PDO::PARAM_INT);        
+    $stm->bindValue(':nm', $arCate['nm'], PDO::PARAM_STR);        
+    $stm->bindValue(':mstflag', $arCate['mstflag'], PDO::PARAM_BOOL);        
+    $stm->bindValue(':mstten', $arCate['mstten'], PDO::PARAM_INT);        
+    return $stm->execute();
   }
 
   function delCate( $cd )
@@ -73,6 +109,11 @@ class Cate {
     return ( $stm->execute());
   }
 
+  function countCate(){
+    $sql = "SELECT COUNT(CD) FROM Cate;";
+    $stm = $this->pdo->query( $sql );
+    return $stm->fetchColumn(0);
+  }
 
   /* getSelectedValue for test function.
    * @param $cd int as Qst cd.
@@ -88,7 +129,6 @@ class Cate {
     return $row[$str];
   }
   
-
   /* return last inserted id
    * @return string
    */

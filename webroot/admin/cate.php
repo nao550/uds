@@ -19,10 +19,10 @@ $smarty->assign('errormode', $errormode);
 
 // 更新処理
 if (getPost('mode') === 'update'){
-  $cate->updateCate( getPost('cd'), getPost('nm') );
+  $cate->updateCate( $_POST );
   $mode = '';
 } else if (getPost('mode') === 'added'){
-  $cate->addCate( getPost('nm') );
+  $cate->addCate( $_POST );
   $mode = '';
 } else if (getPost('mode') === 'del'){
   $cate->delCate( getPost('cd') );
