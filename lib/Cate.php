@@ -28,7 +28,7 @@ class Cate {
     // // FILTER_SQANITIZE_ENCODE で文字化けする？
     $def = array(
       'cd' => FILTER_VALIDATE_INT,
-      'num' => FILTER_SANITIZE_ENCODED,
+      'num' => FILTER_VALIDATE_INT,
       'nm' => FILTER_DEFAULT,
       'mstflag' => FILTER_VALIDATE_BOOLEAN,
       'mstten' => FILTER_VALIDATE_INT
