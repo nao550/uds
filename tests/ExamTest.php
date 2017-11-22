@@ -8,6 +8,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   private $catecd;
   private $type;
   private $exam;
+  private $correnct;
   private $ans1;
   private $ans2;
   private $ans3;
@@ -28,6 +29,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->catecd = '1';
     $this->type = '1';
     $this->exam = "問題文問題文";
+    $this->correct = '2';
     $this->ans1 = "解答選択肢1";
     $this->ans2 = "解答選択肢2";
     $this->ans3 = "解答選択肢3";
@@ -38,6 +40,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
       'catecd' => $this->catecd,
       'type' => $this->type,
       'exam' => $this->exam,
+      'correct' => $this->correct,      
       'ans1' => $this->ans1,
       'ans2' => $this->ans2,
       'ans3' => $this->ans3,
@@ -80,7 +83,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->arExam['cd'] = $cd;
     $this->arExam['catecd'] = '3';
     $this->arExam['type'] = '2';
-    $this->arExam['exam'] = '更新した問題、';    
+    $this->arExam['exam'] = '更新した問題、';
+    $this->arExam['correct'] = '1';    
     $this->arExam['ans1'] = '更新した解答1';
     $this->arExam['ans2'] = '更新した解答2';
     $this->arExam['ans3'] = '更新した解答3';

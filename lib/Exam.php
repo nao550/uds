@@ -35,6 +35,7 @@ class Exam {
       'catecd' => FILTER_VALIDATE_INT,
       'type' => FILTER_VALIDATE_INT,
       'exam' => FILTER_DEFAULT,
+      'correct' => FILTER_VALIDATE_INT,      
       'ans1' => FILTER_DEFAULT,
       'ans2' => FILTER_DEFAULT,
       'ans3' => FILTER_DEFAULT,
@@ -66,11 +67,12 @@ class Exam {
 
     $arExam = $this->arStrFmt( $arStr );
     
-    $sql = 'INSERT INTO Exam (catecd, type, exam, ans1, ans2, ans3, ans4, ans5, regdate ) VALUES (:catecd, :type, :exam, :ans1, :ans2, :ans3, :ans4, :ans5, NOW());';
+    $sql = 'INSERT INTO Exam (catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5, regdate ) VALUES (:catecd, :type, :exam, :correct, :ans1, :ans2, :ans3, :ans4, :ans5, NOW());';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);    
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
+    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_INT); 
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);
@@ -80,7 +82,7 @@ class Exam {
   }
 
   function getExamStr( $cd ){
-    $sql = "SELECT catecd, type, exam, ans1, ans2, ans3, ans4, ans5 FROM Exam WHERE cd = :cd; ";
+    $sql = "SELECT catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5 FROM Exam WHERE cd = :cd; ";
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
     $stm->execute();
@@ -94,12 +96,13 @@ class Exam {
     $arExam = $this->arStrFmt( $arStr );
     
     $sql = 'UPDATE Exam SET catecd = :catecd, type = :type, exam = :exam, '.
-           'ans1 = :ans1, ans2 = :ans2, ans3 = :ans3, ans4 = :ans4, '.
-           'ans5 = :ans5 where cd = :cd ;';
+           'correct = :correct, ans1 = :ans1, ans2 = :ans2, ans3 = :ans3, '.
+           'ans4 = :ans4, ans5 = :ans5 where cd = :cd ;';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);        
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
+    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_INT);        
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);    
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);    
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);    
