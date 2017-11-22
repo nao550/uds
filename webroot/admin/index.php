@@ -8,7 +8,7 @@ $user = new User;
 $session->sessionChk( );
 
 if ( $session->get('rank') === "3" ){
-  $admintop = 'location: top.php';
+  $admintop = 'location: exam.php';
   header( $admintop, true, 303);
 }
 
@@ -18,7 +18,7 @@ if (isset($_POST['username'])){
     $session->set('sid', session_id());
     $session->set('user', $username);
     $session->set('rank', $rank );
-    $admintop = 'location: top.php';
+    $admintop = 'location: exam.php';
     header( $admintop, true, 303);
   } elseif(! empty($rank) ) {
     $session->set('errormode', 2); // 権限エラー

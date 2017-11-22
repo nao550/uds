@@ -14,6 +14,6 @@ if ( $session->get('rank') !== "3" ){
 
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
-$smarty->display('file:admin/top.tpl');
+$smarty->display('file:admin/exam.tpl');
 
 ?>

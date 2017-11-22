@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="menu">
-            <a href="top.php">
+            <a href="exam.php">
               <button class="btn btn-default">問題編集</button>
             </a>
             <a href="qst.php">
