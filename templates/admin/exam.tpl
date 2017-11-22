@@ -8,6 +8,7 @@
             <div class="pagetitle">問題編集</div>
           </div>
         </div>
+        <div class="col-md-1"></div>
       </div>
 
       <div class="row">
@@ -17,16 +18,60 @@
             <a href="cate.php"><button class="btn btn-default">問題カテゴリ編集</button></a>                        
           </div>
         </div>
+        <div class="col-md-1"></div>        
       </div>
 
       <div class="row">
-        <div class="col-sm-10 ml-sm-auto mr-sm-auto">
-          <div class="body">
-            <form class="form" action="editexam.php" method="POST">
-              
-            </form>
+        <div class="col-md-10 col-md-offset-1">
+          <div class="main">
+            <table class="table table-bordered">
+              {foreach $arExam as $ar }
+                {if $ar@first}
+                  <theader>
+                    <tr>
+                      <th>#</th>
+                      <th>アンケート文</th>
+                      <th>正解</th>
+                      <th>タイプ</th>
+                      <th>選択肢1</th>
+                      <th>選択肢2</th>
+                      <th>選択肢3</th>
+                      <th>選択肢4</th>
+                      <th>選択肢5</th>
+                      <th>*</th>                        
+                    </tr>
+                  </theader>
+                {/if}
+                <tbody>
+                  <tr>
+                    <td class="center" style="vertical-align: middle";>{$ar.cd}</td>
+                    <td>{{$ar.exam}|nl2br nofilter}</td>
+                    <td>{$ar.correct}</td>                      
+                    <td>
+                      {if $ar.type eq '1'}
+                        択一選択
+                      {elseif $ar.type eq '2'}
+                        複数選択
+                      {/if}
+                    </td>
+                    <td>{$ar.ans1}</td>
+                    <td>{$ar.ans2}</td>
+                    <td>{$ar.ans3}</td>
+                    <td>{$ar.ans4}</td>
+                    <td>{$ar.ans5}</td>
+                    <td>
+                      <form name="frmExam" action="exam.php" method="POST">
+                        <input type="hidden" name="cd" value="{$ar.cd}" />
+                        <input type="submit" class="btn btn-default" value="編集" />
+                      </form>                 
+                    </td>
+                  </tr>
+                </tbody>
+              {/foreach}
+            </table>
           </div>
         </div>
+        <div class="col-md-1"></div>
       </div>
 
     </div>
