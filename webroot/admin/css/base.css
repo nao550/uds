@@ -9,9 +9,14 @@
 }
 
 h1 {
-    font-size: 130%;
+    font-size: 140%;
     font-weight: bold;
     color: #333;
+}
+
+.main {
+    border: solid 1px #999;
+    padding: 20px;
 }
 
 th {

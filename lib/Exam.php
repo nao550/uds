@@ -53,7 +53,7 @@ class Exam {
    */
   function GetAllExam()
   {
-    $sql = "SELECT * FROM Exam;";
+    $sql = "SELECT * FROM Exam ORDER BY catecd;";
     $stm = $this->pdo->query( $sql );
     return($stm->fetchAll(PDO::FETCH_ASSOC));
   }
@@ -82,7 +82,7 @@ class Exam {
   }
 
   function getExamStr( $cd ){
-    $sql = "SELECT catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5 FROM Exam WHERE cd = :cd; ";
+    $sql = "SELECT cd, catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5 FROM Exam WHERE cd = :cd; ";
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
     $stm->execute();

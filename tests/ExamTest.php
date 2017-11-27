@@ -72,8 +72,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   public function testGetExamStr()
   {
     $this->target->addExam( $this->arExam );
-    $cd = $this->target->getLastInsertId();    
-    $this->assertEquals( $this->arExam, $this->target->getExamStr($cd));
+    $this->arExam['cd'] = $this->target->getLastInsertId();    
+    $this->assertEquals( $this->arExam, $this->target->getExamStr($this->arExam['cd']));
   }
 
   public function testUpdateExam()

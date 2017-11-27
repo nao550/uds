@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="header">
-            <div class="pagetitle">問題編集</div>
+            <div class="pagetitle"><h1>問題編集</h1></div>
           </div>
         </div>
         <div class="col-md-1"></div>
@@ -14,8 +14,8 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="menu">
+            <a href="cate.php"><button class="btn btn-default">問題カテゴリ編集</button></a>
             <a href="qst.php"><button class="btn btn-default">アンケート編集</button></a>
-            <a href="cate.php"><button class="btn btn-default">問題カテゴリ編集</button></a>                        
           </div>
         </div>
         <div class="col-md-1"></div>        
@@ -25,12 +25,13 @@
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
             <table class="table table-bordered">
-              {foreach $arExam as $ar }
+              {foreach $arExam as $ar name=exams}
                 {if $ar@first}
                   <theader>
                     <tr>
                       <th>#</th>
-                      <th>アンケート文</th>
+                      <th>カテゴリ</th>
+                      <th>問題</th>
                       <th>正解</th>
                       <th>タイプ</th>
                       <th>選択肢1</th>
@@ -44,7 +45,17 @@
                 {/if}
                 <tbody>
                   <tr>
-                    <td class="center" style="vertical-align: middle";>{$ar.cd}</td>
+                    <td class="center" style="vertical-align: middle";>
+                      {$smarty.foreach.exams.iteration}
+                      <input type="hidden" name="cd" value="{$ar.cd}"/>
+                    </td>
+                    <td>
+                      {foreach $cate as $cat}
+                        {if $cat.cd eq $ar.catecd}
+                          {$cat.nm}
+                        {/if}
+                      {/foreach}
+                    </td>
                     <td>{{$ar.exam}|nl2br nofilter}</td>
                     <td>{$ar.correct}</td>                      
                     <td>
@@ -62,8 +73,9 @@
                     <td>
                       <form name="frmExam" action="exam.php" method="POST">
                         <input type="hidden" name="cd" value="{$ar.cd}" />
+                        <input type="hidden" name="mode" value="edit" />
                         <input type="submit" class="btn btn-default" value="編集" />
-                      </form>                 
+                      </form>
                     </td>
                   </tr>
                 </tbody>

@@ -32,3 +32,13 @@ function qstdel(){
         return false;
     }
 }
+
+function examupdate(){
+    if(window.confirm("問題を更新します。よろしいですか？")){
+        document.exameditfrm.submit();
+        return true;
+    } else {
+        return false;
+    }
+}
+
