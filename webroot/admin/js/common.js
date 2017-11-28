@@ -60,3 +60,26 @@ function examdelete(){
     }
 }
 
+function cateadded(){
+    if(window.confirm("問題カテゴリを追加します。よろしいですか？")){
+        document.cateaddfrm.submit();
+    } else {
+        return false;
+    }
+}
+
+function cateedit(){
+    if(window.confirm("問題カテゴリを編集します。よろしいですか？")){
+        document.cateeditfrm.submit();
+    } else {
+        return false;
+    }
+}
+
+function catedel(){
+    if(window.confirm("問題カテゴリを削除します。よろしいですか？")){
+        document.catedelfrm.submit();
+    } else {
+        return false;
+    }
+}

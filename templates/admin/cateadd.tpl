@@ -22,29 +22,29 @@
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="main">
-            <table class="table table-bordered">
-              <tbody>
-                <tr>
-                  <th class="col-md-2">#</th>
-                  <th class="col-md-8">カテゴリ</th>
-                  <th class="col-md-2">*</th>
-                </tr>
-                <tr>
-                  <form name="cateeditfrm" action="#" method="POST" >
-                    <td name="cd" class="center" style="vertical-align: middle;"><input type="hidden" name="cd" value=""></td>
+            <form name="cateaddfrm" action="#" method="POST" >            
+              <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                    <th class="col-md-8">カテゴリ名</th>
+                    <th class="col-md-2">必須</th>
+                    <th class="col-md-2">達成点数</th>
+                  </tr>
+                  <tr>
                     <td><input class="form-control" type="text" name="nm" value="" /></td>
-                    <td class="center" style="vertical-align: middle;">
-                      <input type="hidden" name="sid" value="{$sid}" />
-                      <input type="hidden" name="mode" value="added" />
-                      <button type="submit" class="btn btn-default">追加</button>
-                    </td>
-                  </form>
-                </tr>
-              </tbody>
-            </table>
+                    <td class="center" style="vertical-align: middle;"><input type="checkbox" name="mstflag" value="false" /></td>
+                    <td class="center" style="vertical-align: middle;"><input class="form-control" type="text" name="mstten" value="0" /></td>
+                  </tr>
+                </tbody>
+              </table>
+              <input type="hidden" name="sid" value="{$sid}" />
+              <input type="hidden" name="mode" value="added" />
+              <input type="hidden" name="num" value="0" />                      
+              <button type="button" class="btn btn-default" onClick="cateadded()">追加</button>
             <a href="cate.php">
-              <button class="btn btn-default" >キャンセル</button>
+              <button type="button" class="btn btn-default" >キャンセル</button>
             </a>
+            </form>                          
           </div>
         </div>
         <div class="col-md-1"></div>

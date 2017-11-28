@@ -33,6 +33,9 @@ class Cate {
       'mstflag' => FILTER_VALIDATE_BOOLEAN,
       'mstten' => FILTER_VALIDATE_INT
     );
+    if ( $def['mstflag'] === NULL ){
+      $def['mstflag'] = 0;
+    }
     $arCate = filter_var_array( $arStr, $def );
 
     return $arCate;

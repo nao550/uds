@@ -38,7 +38,6 @@ if (getPost('mode') === 'edit'){ // 編集画面
   $smarty->display('file:admin/cateadd.tpl');
 } else {  // 通常の画面
   $arCate = $cate->getAllCate();
-  $smarty->assign('sid', $_SESSION['sid']);
   $smarty->assign('arCate', $arCate);
   $smarty->display('file:admin/cate.tpl');
 }
