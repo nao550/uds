@@ -54,8 +54,8 @@
                       <option value="1" {if $arExam.correct eq '1'}selected{/if}>1</option>
                       <option value="2" {if $arExam.correct eq '2'}selected{/if}>2</option>
                       <option value="3" {if $arExam.correct eq '3'}selected{/if}>3</option>
-                      <option value="4" {if $arExam.correct eq '4'}selected{/if}>5</option>
-                      <option value="5" {if $arExam.correct eq '4'}selected{/if}>5</option>
+                      <option value="4" {if $arExam.correct eq '4'}selected{/if}>4</option>
+                      <option value="5" {if $arExam.correct eq '5'}selected{/if}>5</option>
                       
                     </select>
                   </td>
