@@ -51,3 +51,12 @@ function examadded(){
     }
 }
 
+function examdelete(){
+    if(window.confirm("問題を削除します。よろしいですか？")){
+        document.examdelfrm.submit();
+        return true;
+    } else {
+        return false;
+    }
+}
+

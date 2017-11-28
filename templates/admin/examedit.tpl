@@ -96,12 +96,23 @@
                 </tr>
               </tbody>
             </table>
-            <input type="hidden" name="mode" value="update" />
-            <button type="button" class="btn btn-default" name="btnUpdate" onClick="examupdate()">更新</button>
-            <a href="exam.php">
-              <button type="button" class="btn btn-default">キャンセル</button>
-            </a>
+            <div class="row">
+              <div class="col-md-6 left">
+                <input type="hidden" name="mode" value="update" />
+                <button type="button" class="btn btn-default" name="btnUpdate" onClick="examupdate()">更新</button>
           </form>
+                <a href="exam.php">
+                  <button type="button" class="btn btn-default">キャンセル</button>
+                </a>
+              </div>
+              <div class="col-md-6" style="text-align: right">
+                <form name="examdelfrm" action="exam.php" method="POST">
+                  <input type="hidden" name="cd" value="{$arExam.cd}" />
+                  <input type="hidden" name="mode" value="del">
+                  <button type="button" class="btn btn-danger" name="btndel" onClick="examdelete()">削除</button>
+                </form>
+              </div>
+
         </div>
       </div>
 
