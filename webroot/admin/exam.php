@@ -23,7 +23,7 @@ $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
 $smarty->assign('cate', $cate);
 
-if ( $mode === 'add' ){
+if ( $mode === 'added' ){
   $exam->addExam( $_POST );
   $mode = '';
 } else if ( $mode === 'update' ){
@@ -38,6 +38,8 @@ if ( $mode === 'edit' ){
   $arExam = $exam->getExamStr($cd);
   $smarty->assign('arExam', $arExam);
   $smarty->display('file:admin/examedit.tpl');
+} else if ( $mode === 'add' ){
+  $smarty->display('file:admin/examadd.tpl');
 } else {
   $arExam = $exam->getAllExam();
   $smarty->assign('arExam', $arExam);

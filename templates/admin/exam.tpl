@@ -81,6 +81,10 @@
                 </tbody>
               {/foreach}
             </table>
+            <form name="addExamfrm" action="exam.php" method="post">
+              <input type="hidden" name="mode" value="add" />
+              <input type="submit" class="btn btn-default" value="問題追加" />
+            </form>
           </div>
         </div>
         <div class="col-md-1"></div>

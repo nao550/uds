@@ -42,3 +42,12 @@ function examupdate(){
     }
 }
 
+function examadded(){
+    if(window.confirm("問題を追加します。よろしいですか？")){
+        document.examaddfrm.submit();
+        return true;
+    } else {
+        return false;
+    }
+}
+
