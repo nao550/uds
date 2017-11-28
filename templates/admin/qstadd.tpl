@@ -30,44 +30,38 @@
               <table class="table table-bordered">
                 <tbody>
                   <tr>
-                    <th class="col-md-1">#</th>
                     <th class="col-md-5">アンケート文</th>
-                    <th class="col-md-1">タイプ</th>
-                    <th class="col-md-4">選択肢</th>
-                    <th class="col-md-1">*</th>
+                    <th class="col-md-2">タイプ</th>
+                    <th class="col-md-5">選択肢</th>
                   </tr>
 
                   <tr>
-                    <td class="center" style="vertical-align: middle;"></td>
-                    <td><textarea class="qsttxt" name="question" ></textarea></td>
+                    <td><textarea class="form-control" name="question" rows="15"></textarea></td>
                     <td class="center" style="vertical-align: middle;">
-                      <select name="type" style="height:2em">
+                      <select class="form-control" name="type">
                           <option value="1">単一選択</option>
                           <option value="2">複数選択</option>
-                          <option value="3">文字入力</option>                      </select>
+                          <option value="3">文字入力</option>
+                      </select>
                     </td>
                     <td class="center" style="vertical-align: middle;">
                       <table class="table table-bordered">
                         <tbody>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans1"  /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans2"  /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans3"  /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans4"  /></td></tr>
-                          <tr><td class="left"><input type="text" class="anstxt" name="ans5"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="form-control" name="ans1"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="form-control" name="ans2"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="form-control" name="ans3"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="form-control" name="ans4"  /></td></tr>
+                          <tr><td class="left"><input type="text" class="form-control" name="ans5"  /></td></tr>
                         </tbody>
                       </table>
                     </td>
-                    <td class="center" style="vertical-align: middle;">
-                      <input type="hidden" name="mode" value="qstadd" />
-                      <button type="button" class="btn btn-default" name="mode" value="qstadd" onClick="qstadd()">追加</button>
-                      <br /><br />
-                    </td>
-            </form>                    
                   </tr>
                 </tbody>
               </table>
-            </form>
-            <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>
+              <input type="hidden" name="mode" value="qstadd" />
+              <button type="button" class="btn btn-default" name="mode" value="qstadd" onClick="qstadd()">追加</button>
+              <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>
+            </form>              
           </div>
         </div>
         <div class="col-md-1"></div>

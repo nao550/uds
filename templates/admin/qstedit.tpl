@@ -34,7 +34,6 @@
                     <th class="col-md-5">アンケート文</th>
                     <th class="col-md-1">タイプ</th>
                     <th class="col-md-4">選択肢</th>
-                    <th class="col-md-1">*</th>
                   </tr>
 
                   <tr>
@@ -68,27 +67,25 @@
                         </tbody>
                       </table>
                     </td>
-                    <td class="center" style="vertical-align: middle;">
-                      <input type="hidden" name="cd" value="{$arqst.cd}" />
-                      <input type="hidden" name="mode" value="qstupdate" />
-                      <button type="button" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
-                      <br /><br />
-                    </td>
                   </tr>
                 </tbody>
               </table>
-            </form>                                  
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
+                  <input type="hidden" name="cd" value="{$arqst.cd}" />
+                  <input type="hidden" name="mode" value="qstupdate" />
+                  <button type="button" class="btn btn-default" name="mode" value="qstupdate" onClick="qstupdate()">更新</button>
+                  <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>                                      
+                </div>
+            </form>                                  
+                <div class="col-md-6" style="text-align: right">
                   <form name="qstdelfrm" action="qstedit.php" method="post">
                     <input type="hidden" name="cd" value="{$arqst.cd}" />                    
                     <input type="hidden" name="mode" value="qstdel" />                    
-                    <button type="button" class="btn btn-default" name="mode" value="qstdel" onClick="qstdel()">削除</button>
-                    <a href="qst.php"><button type="button" class="btn btn-default">キャンセル</button></a>                    
-                    </form>
+                    <button type="button" class="btn btn-danger" name="mode" value="qstdel" onClick="qstdel()">削除</button>
+                  </form>
                 </div>
               </div>
-            </form>
           </div>
         </div>
         <div class="col-md-1"></div>
