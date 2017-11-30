@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.main {
+    margin-bottom: 30px;
+}
+
 .pagetitle {
     text-align: center;
     margin-top: 50px;
@@ -31,6 +35,24 @@
 }
 
 .qstselect {
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 2em;    
+}
+
+.exam {
+    margin-bottom: 20px;
+    border: solid 1px #333;
+    padding: 5px;
+}
+
+.examtoi {
+    margin-top: 10px;
+    font-size: 120%;
+    line-height: 1.5em;
+}
+
+.examselect {
     margin-top: 10px;
     margin-left: 20px;
     line-height: 2em;    
