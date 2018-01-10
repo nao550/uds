@@ -14,6 +14,8 @@
         <p>{$uid}</p>
           <div class="main">
             <form name="examfrm" action="index.php" method="post" >
+              <input type="hidden" name="uid" value="{$uid}" />
+              <input type="hidden" name="sid" value="{$sid}" />
               <p>
                 解答を受取ました。
               </p>
@@ -25,4 +27,3 @@
     </div>
 
 {include file='footer.tpl'}
-  

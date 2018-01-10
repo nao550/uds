@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<dataset>
+  <Ans cd="1" uid="xxx111" type="1" examcd="1" catcd="2" ans="1" correct="1" regdate="2000-01-01"  />
+  <Ans cd="2" uid="xxx111" type="2" examcd="2" catcd="3" ans="12" correct="12" regdate="2000-01-01"  />
+  <Ans cd="3" uid="xxx111" type="1" examcd="3" catcd="3" ans="3" correct="4" regdate="2000-01-01"  />
+  <Ans cd="4" uid="xxx111" type="2" examcd="4" catcd="4" ans="34" correct="1" regdate="2000-01-01"  />
+</dataset>

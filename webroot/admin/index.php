@@ -14,7 +14,7 @@ if ( $session->get('rank') === "3" ){
 
 if (isset($_POST['username'])){
   $rank = $user->getUserRank( getPost('username'), getPost('password') );
-  if ( $rank === "3"){    
+  if ( $rank === "3"){
     $session->set('sid', session_id());
     $session->set('user', $username);
     $session->set('rank', $rank );
@@ -25,7 +25,7 @@ if (isset($_POST['username'])){
   } else {
     $session->set('errormode',1 ); // アカウントエラー
   }
-} 
+}
 
 // ログインエラーのチェック
 if( isset( $_SESSION['errormode'])){

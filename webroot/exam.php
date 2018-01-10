@@ -7,8 +7,10 @@ $exam = new Exam;
 $anser = new Anser;
 
 $errormode = 0;
-$uid = getPost('uid');
 $session->sessionChk( );
+$uid = getPost('uid');
+$sid = session_id();
+$examnum = $exam->countExam();
 
 if (getPost('uid') === ''){
   $url = 'Location: index.php';
@@ -20,12 +22,15 @@ var_dump($_POST);
 
 /* 解答送信 */
 if (getPost("mode") === "ans") {
-//  $anser->fmtResp();
+  $anser->fmtAns();
   $smarty->assign('uid', $uid);
-  $smarty->display('examend.tpl');  
+  $smarty->assign('sid', $sid);
+  $smarty->display('examend.tpl');
 } else {  // 問題表示
   $arexam = $exam->getAllExam();
   $smarty->assign('arexam', $arexam);
+  $smarty->assign('examnum', $examnum);
   $smarty->assign('uid', $uid);
+  $smarty->assign('sid', $sid);
   $smarty->display('examtop.tpl');
 }

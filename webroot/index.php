@@ -6,6 +6,7 @@ $user = new User;
 
 $errormode = 0;
 $session->sessionChk( );
+$session->set('sid', session_id());
 
 $uid = "32452345";
 
@@ -13,6 +14,7 @@ $uid = "32452345";
 // ボタンの表示変更する
 
 $smarty->assign('uid', $uid);
+$smarty->assign('sid', session_id());
 $smarty->display('index.tpl');
 
 
