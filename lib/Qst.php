@@ -13,7 +13,7 @@ use PDO;
 
 class Qst {
   private $pdo;
-  
+
   function __construct(){
     $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
     try{
@@ -57,7 +57,7 @@ class Qst {
   */
   function addQst ( $arQst )
   {
-    
+
     $sql = 'INSERT INTO Qst (type, question, ans1, ans2, ans3, ans4, ans5 ) VALUES (:type, :question, :ans1, :ans2, :ans3, :ans4, :ans5);';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':type', $arQst['type'], PDO::PARAM_INT);
@@ -78,20 +78,20 @@ class Qst {
     $row = $stm->fetch(PDO::FETCH_ASSOC);
     return $row;
   }
-  
+
 
   function updateQst( $arQst ){
     $sql = 'UPDATE Qst SET type = :type, question = :question, '.
            'ans1 = :ans1, ans2 = :ans2, ans3 = :ans3, ans4 = :ans4, '.
            'ans5 = :ans5 where cd = :cd ;';
     $stm = $this->pdo->prepare( $sql );
-    $stm->bindValue(':type', $arQst['type'], PDO::PARAM_INT);    
+    $stm->bindValue(':type', $arQst['type'], PDO::PARAM_INT);
     $stm->bindValue(':question', $arQst['question'], PDO::PARAM_STR);
-    $stm->bindValue(':ans1', $arQst['ans1'], PDO::PARAM_STR);    
-    $stm->bindValue(':ans2', $arQst['ans2'], PDO::PARAM_STR);    
-    $stm->bindValue(':ans3', $arQst['ans3'], PDO::PARAM_STR);    
-    $stm->bindValue(':ans4', $arQst['ans4'], PDO::PARAM_STR);    
-    $stm->bindValue(':ans5', $arQst['ans5'], PDO::PARAM_STR);    
+    $stm->bindValue(':ans1', $arQst['ans1'], PDO::PARAM_STR);
+    $stm->bindValue(':ans2', $arQst['ans2'], PDO::PARAM_STR);
+    $stm->bindValue(':ans3', $arQst['ans3'], PDO::PARAM_STR);
+    $stm->bindValue(':ans4', $arQst['ans4'], PDO::PARAM_STR);
+    $stm->bindValue(':ans5', $arQst['ans5'], PDO::PARAM_STR);
     $stm->bindValue(':cd', $arQst['cd'], PDO::PARAM_INT);
     $stm->execute();
     return true;
@@ -103,6 +103,12 @@ class Qst {
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
     return ( $stm->execute());
+  }
+
+  function getCount(){
+    $sql = "SELECT COUNT(CD) FROM Qst;";
+    $stm = $this->pdo->query( $sql );
+    return $stm->fetchColumn(0);
   }
 
 }

@@ -10,7 +10,6 @@ $errormode = 0;
 $session->sessionChk( );
 $uid = getPost('uid');
 $sid = session_id();
-$examnum = $exam->countExam();
 
 if (getPost('uid') === ''){
   $url = 'Location: index.php';
@@ -28,6 +27,7 @@ if (getPost("mode") === "ans") {
   $smarty->display('examend.tpl');
 } else {  // 問題表示
   $arexam = $exam->getAllExam();
+  $examnum = $exam->countExam();
   $smarty->assign('arexam', $arexam);
   $smarty->assign('examnum', $examnum);
   $smarty->assign('uid', $uid);

@@ -14,6 +14,8 @@
           <div class="main">
             <form name="qstfrm" action="#" method="post" >
               <input type="hidden" name="uid" value="{$uid}" />
+              <input type="hidden" name="sid" value="{$sid}" />
+              <input type="hidden" name="qstnum" value="{$qstnum}" />
               <div class="form-group">
                 {foreach $arqst as $qst name="qstnum"}
                   <div class="qst">
@@ -23,46 +25,46 @@
                     </div>
                     <div class="qstselect">
                       {if $qst.type eq '1'}
-                          <input type="hidden" name="{$qst.cd}[qstcd]" value="{$qst.cd}" />
-                          <input type="hidden" name="{$qst.cd}[type]" value="{$qst.type}" />                        
+                          <input type="hidden" name="{$qst@iteration}qstcd" value="{$qst.cd}" />
+                          <input type="hidden" name="{$qst@iteration}type" value="{$qst.type}" />
                           {if $qst.ans1 neq ''}
-                            <input type="radio" name="{$qst.cd}[ans]" value="1" />{$qst.ans1}<br />
+                            <input type="radio" name="{$qst@iteration}ans[]" value="1" />{$qst.ans1}<br />
                           {/if}
                           {if $qst.ans2 neq ''}
-                            <input type="radio" name="{$qst.cd}[ans]" value="2" />{$qst.ans2}<br />
+                            <input type="radio" name="{$qst@iteration}ans[]" value="2" />{$qst.ans2}<br />
                           {/if}
                           {if $qst.ans3 neq ''}
-                            <input type="radio" name="{$qst.cd}[ans]" value="3" />{$qst.ans3}<br />
+                            <input type="radio" name="{$qst@iteration}ans[]" value="3" />{$qst.ans3}<br />
                           {/if}
                           {if $qst.ans4 neq ''}
-                            <input type="radio" name="{$qst.cd}[ans]" value="4" />{$qst.ans4}<br />
+                            <input type="radio" name="{$qst@iteration}ans[]" value="4" />{$qst.ans4}<br />
                           {/if}
                           {if $qst.ans5 neq '' }
-                            <input type="radio" name="{$qst.cd}[ans]" value="5" />{$qst.ans5}<br />
+                            <input type="radio" name="{$qst@iteration}ans[]" value="5" />{$qst.ans5}<br />
                           {/if}
                       {elseif $qst.type eq '2'}
-                        <input type="hidden" name="{$qst.cd}[qstcd]" value="{$qst.cd}" />
-                        <input type="hidden" name="{$qst.cd}[type]" value="{$qst.type}" />                        
+                        <input type="hidden" name="{$qst@iteration}qstcd" value="{$qst.cd}" />
+                        <input type="hidden" name="{$qst@iteration}type" value="{$qst.type}" />
                         {if $qst.ans1 neq ''}
-                          <input type="checkbox" name="{$qst.cd}[ans1]" value="1" />{$qst.ans1}<br />
+                          <input type="checkbox" name="{$qst@iteration}ans[]" value="1" />{$qst.ans1}<br />
                         {/if}
                         {if $qst.ans2 neq ''}
-                          <input type="checkbox" name="{$qst.cd}[ans2]" value="2" />{$qst.ans2}<br />
+                          <input type="checkbox" name="{$qst@iteration}ans[]" value="2" />{$qst.ans2}<br />
                         {/if}
                         {if $qst.ans3 neq ''}
-                          <input type="checkbox" name="{$qst.cd}[ans3]" value="3" />{$qst.ans3}<br />
+                          <input type="checkbox" name="{$qst@iteration}ans[]" value="3" />{$qst.ans3}<br />
                         {/if}
                         {if $qst.ans4 neq ''}
-                          <input type="checkbox" name="{$qst.cd}[ans4]" value="4" />{$qst.ans4}<br />
+                          <input type="checkbox" name="{$qst@iteration}ans[]" value="4" />{$qst.ans4}<br />
                         {/if}
                         {if $qst.ans5 neq '' }
-                          <input type="checkbox" name="{$qst.cd}[ans5]" value="5" />{$qst.ans5}<br />
+                          <input type="checkbox" name="{$qst@iteration}ans[]" value="5" />{$qst.ans5}<br />
                         {/if}
                       {elseif $qst.type eq '3'}
-                        <input type="hidden" name="{$qst.cd}[qstcd]" value="{$qst.cd}" />
-                        <input type="hidden" name="{$qst.cd}[type]" value="{$qst.type}" />                        
-                        <textarea name="{$qst.cd}[ans]" style="width:100%;height:10em"></textarea>
-                      {/if}                
+                        <input type="hidden" name="{$qst@iteration}qstcd" value="{$qst.cd}" />
+                        <input type="hidden" name="{$qst@iteration}type" value="{$qst.type}" />
+                        <textarea name="{$qst@iteration}ans[]" style="width:100%;height:10em"></textarea>
+                      {/if}
                     </div>
                   </div>
                 {/foreach}
@@ -76,4 +78,3 @@
     </div>
 
 {include file='footer.tpl'}
-  

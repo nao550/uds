@@ -14,7 +14,7 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   private $ans5;
   private $arQst;
   private $target;
-  
+
 /*
   public function setUp(){
   }
@@ -35,7 +35,7 @@ class QstTest extends Generic_Tests_DatabaseTestCase
                           'ans5' => $this->ans5 );
     $this->target = new Qst;
 
-    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/QstDB.xml');    
+    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/QstDB.xml');
   }
 
   public function testGetRowCount()
@@ -59,8 +59,8 @@ class QstTest extends Generic_Tests_DatabaseTestCase
     }
     $this->assertEquals(4, $n);
   }
-  
-  
+
+
   public function testAddQst ()
   {
     //$this->markTestIncomplete();
@@ -75,13 +75,13 @@ class QstTest extends Generic_Tests_DatabaseTestCase
   public function testGetQstStr()
   {
     $this->target->addQst( $this->arQst );
-    $cd = $this->target->getLastInsertId();    
+    $cd = $this->target->getLastInsertId();
     $this->assertEquals( $this->arQst, $this->target->getQstStr($cd));
   }
 
   public function testUpdateQst()
   {
-    $this->target->addQst( $this->arQst);    
+    $this->target->addQst( $this->arQst);
     $this->arQst['ans1'] = 'renewans1';
     $this->arQst['ans2'] = 'renewans2';
     $this->arQst['ans3'] = 'renewans3';
@@ -95,9 +95,12 @@ class QstTest extends Generic_Tests_DatabaseTestCase
 
   public function testDelQst()
   {
-    $this->target->addQst( $this->arQst);    
+    $this->target->addQst( $this->arQst);
     $this->assertTrue( $this->target->delQst( $this->cd ));
   }
+
+  public function testGetCount()
+  {
+    $this->assertEquals(4,$this->target->getCount());
+  }
 }
-
-

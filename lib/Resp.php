@@ -12,7 +12,7 @@ use PDO;
 
 class Resp {
   private $pdo;
-  
+
   function __construct(){
     $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
     try{
@@ -29,12 +29,13 @@ class Resp {
   */
   function addResp ( $arResp )
   {
-    $sql = 'INSERT INTO Resp (uid, qstcd, type, ans, regdate ) VALUES (:uid, :qstcd, :type, :ans, NOW());';
+    $sql = 'INSERT INTO Resp (uid, qstcd, type, ans, sid, regdate ) VALUES (:uid, :qstcd, :type, :ans, :sid, NOW());';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':uid', $arResp['uid'], PDO::PARAM_STR);
-    $stm->bindValue(':qstcd', $arResp['qstcd'], PDO::PARAM_STR);    
+    $stm->bindValue(':qstcd', $arResp['qstcd'], PDO::PARAM_STR);
     $stm->bindValue(':type', $arResp['type'], PDO::PARAM_INT);
     $stm->bindValue(':ans', $arResp['ans'], PDO::PARAM_STR);
+    $stm->bindValue(':sid', $arResp['sid'], PDO::PARAM_STR);
     return ($stm->execute());
   }
 
@@ -46,20 +47,41 @@ class Resp {
   function fmtResp ( ){
     $ans = '';
     $uid = getPost('uid');
-    foreach ( $_POST as $value ) {
-      if ( isset($value['cd']) !== false ){
-        if ( isset($value['ans']) === false ){
-          isset($value['ans1']) ? $ans .= $value['ans1'] : $ans .= '' ;
-          isset($value['ans2']) ? $ans .= $value['ans2'] : $ans .= '' ;
-          isset($value['ans3']) ? $ans .= $value['ans3'] : $ans .= '' ;
-          isset($value['ans4']) ? $ans .= $value['ans4'] : $ans .= '' ;
-          isset($value['ans5']) ? $ans .= $value['ans5'] : $ans .= '' ;
-          $value['ans'] = $ans;
+    $sid = getPost('sid');
+    $qstnum = getPost('qstnum');
+
+    for( $n = 1; $n <= $qstnum ; $n++ ){
+      if(isset(${$n.'qstcd'})){
+        break;
+      }
+
+      $qstcd = getPost($n.'qstcd');
+      $type = getPost($n.'type');
+      $ans = '';
+
+      if (isset($_POST[$n.'ans'])){
+        if (is_array($_POST[$n.'ans'])){
+          foreach( $_POST[$n.'ans'] as $anser ){
+            $ans .= $anser;
+          }
+        } else {
+          $ans = '';
         }
-        $value['uid'] = $uid;
-        $this->addResp( $value );
+      } else {
         $ans = '';
       }
+
+      $value = array(
+        'uid' => $uid,
+        'sid' => $sid,
+        'qstcd' => $qstcd,
+        'type' => $type,
+        'ans' => $ans,
+        'sid' => $sid
+
+      );
+      $this->addResp( $value );
+      $ans = '';
     }
     return true;
   }
@@ -83,10 +105,10 @@ class Resp {
   }
    */
 
-  /* 
-   *for test functions. 
+  /*
+   *for test functions.
    */
-  
+
   /* return last inserted id
    * @return string
    */
@@ -107,5 +129,5 @@ class Resp {
     $row = $stm->fetch(PDO::FETCH_ASSOC);
     return $row[$str];
   }
-  
+
 }
