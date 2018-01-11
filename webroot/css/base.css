@@ -25,7 +25,9 @@
 
 .qst {
     margin-bottom: 20px;
-    
+    border: solid 1px #333;
+    padding: 5px;
+
 }
 
 .qsttoi {
@@ -37,7 +39,7 @@
 .qstselect {
     margin-top: 10px;
     margin-left: 20px;
-    line-height: 2em;    
+    line-height: 2em;
 }
 
 .exam {
@@ -55,5 +57,5 @@
 .examselect {
     margin-top: 10px;
     margin-left: 20px;
-    line-height: 2em;    
+    line-height: 2em;
 }
