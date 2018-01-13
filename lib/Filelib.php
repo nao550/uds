@@ -1,15 +1,27 @@
 <?php
 // File lib
 // array($color, $errmsg, $filename) = up( $_FILES )
+// set config file
+// $imgpath = "/hoo/bat/";
 
-include_once(__DIR__.'/../config.php');
+namespace morris;
 
-class FILEUP {
+class Fileup {
+  private $pdo;
+
+  function __construct(){
+    $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
+    try{
+      $this->pdo = new PDO($dsn, $GLOBALS['DBUSER'], $GLOBALS['DBPASS']);
+    } catch (PDOException $e) {
+      exit('データベース接続失敗。'.$e->getMessage());
+    }
+  }
 
   function up ( $files, $examcd ){
     // from http://qiita.com/mpyw/items/73ee77a9535cc65eff1e
     global $CFG;
-    
+
     if (isset($files['upfile']['error']) && is_int($files['upfile']['error'])) {
       try {
 
@@ -37,7 +49,7 @@ class FILEUP {
 	// ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
 	//$filename = sha1_file($files['upfile']['tmp_name']) . image_type_to_extension($type);
 	// ファイル名は $examcd を使用して問題番号と合せる
-	$filename = $examcd . image_type_to_extension($type);	
+	$filename = $examcd . image_type_to_extension($type);
 	$path = sprintf( __DIR__.'/../web/uploads/%s', $filename);
 	if (!move_uploaded_file($files['upfile']['tmp_name'], $path)) {
 	  throw new RuntimeException('ファイル保存時にエラーが発生しました');
@@ -51,7 +63,7 @@ class FILEUP {
 	$msg = array('red', $e->getMessage(), '' );
 
       }
-      
+
       return $msg;
     }
   }
