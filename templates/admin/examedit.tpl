@@ -15,17 +15,17 @@
       <div class="col-md-10 col-md-offset-1">
         <div class="menu">
           <a href="exam.php"><button class="btn btn-default">問題編集</button></a>
-          <a href="cate.php"><button class="btn btn-default">問題カテゴリ編集</button></a>          
+          <a href="cate.php"><button class="btn btn-default">問題カテゴリ編集</button></a>
           <a href="qst.php"><button class="btn btn-default">アンケート編集</button></a>
         </div>
       </div>
-      <div class="col-md-1"></div>        
+      <div class="col-md-1"></div>
     </div>
 
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="main">
-          <form name="exameditfrm" action="exam.php" method="POST">          
+          <form name="exameditfrm" action="exam.php" method="POST" enctype="multipart/form-data">
             <table class="table table-bordered">
               <input type="hidden" name="cd" value="{$arExam.cd}" />
               <tbody>
@@ -44,8 +44,17 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>問題文</th>                        
+                  <th>問題文</th>
                   <td><textarea name="exam" class="form-control" rows="5"> {{$arExam.exam}|nl2br nofilter}</textarea></td>
+                </tr>
+                <tr>
+                  <th>画像</th>
+                  <td>
+
+                    <p>
+                      <input type="file" name="fileup" />
+                    </p>
+                  </td>
                 </tr>
                 <tr>
                   <th>正解</th>
@@ -56,7 +65,7 @@
                       <option value="3" {if $arExam.correct eq '3'}selected{/if}>3</option>
                       <option value="4" {if $arExam.correct eq '4'}selected{/if}>4</option>
                       <option value="5" {if $arExam.correct eq '5'}selected{/if}>5</option>
-                      
+
                     </select>
                   </td>
                 </tr>
@@ -123,4 +132,3 @@
 
 </body>
 {include file='footer.tpl'}
-  

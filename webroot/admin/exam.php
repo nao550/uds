@@ -5,6 +5,7 @@ $errormode = 0;
 
 $session = new Session;
 $exam = new Exam;
+$filelib = new Filelib;
 $cate = new Cate;
 
 $session->sessionChk( );
@@ -18,6 +19,15 @@ $cate = $cate->getAllCate();
 
 $mode = getPost('mode');
 $cd = getPost('cd');
+
+
+// $_FILES が設定されていれば画像ファイルの追加
+if( isset( $_FILES['fileup'] )){
+  // 追加するまえに古いファイルがあれば削除する
+  $msg = $filelib->up($_FILES, $cd);
+}
+
+// $cd の画像ファイルがあれば $imgpath に設定
 
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);

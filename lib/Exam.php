@@ -80,6 +80,7 @@ class Exam {
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);
     $stm->bindValue(':ans4', $arExam['ans4'], PDO::PARAM_STR);
     $stm->bindValue(':ans5', $arExam['ans5'], PDO::PARAM_STR);
+
     return ($stm->execute());
   }
 
