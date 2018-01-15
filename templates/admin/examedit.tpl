@@ -50,7 +50,7 @@
                 <tr>
                   <th>画像</th>
                   <td>
-
+                    <p>{$imgpath nofilter}</p>
                     <p>
                       <input type="file" name="fileup" />
                     </p>

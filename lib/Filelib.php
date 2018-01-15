@@ -20,6 +20,14 @@ class Filelib {
 
   function up ( $files, $examcd ){
     // from http://qiita.com/mpyw/items/73ee77a9535cc65eff1e
+    global $CFG;
+
+    $isImg = $this->isimg($examcd);
+    if( $isImg['flag'] === true ){
+      echo "del mode";
+      var_dump( $isImg );
+      $this->delImg($examcd);
+    }
 
     if (isset($files['fileup']['error']) && is_int($files['fileup']['error'])) {
       try {
@@ -49,7 +57,7 @@ class Filelib {
 	//$filename = sha1_file($files['fileup']['tmp_name']) . image_type_to_extension($type);
 	// ファイル名は $examcd を使用して問題番号と合せる
 	$filename = $examcd . image_type_to_extension($type);
-	$path = sprintf( __DIR__.'/../uploads/%s', $filename);
+	$path = sprintf( __DIR__ .'/../webroot/img/%s', $filename);
 	if (!move_uploaded_file($files['fileup']['tmp_name'], $path)) {
 	  throw new RuntimeException('ファイル保存時にエラーが発生しました');
 	}
@@ -64,18 +72,21 @@ class Filelib {
     }
   }
 
-  function chkImage ( $examcd ){
+  function isImg ( $examcd ){
+    global $CFG;
+
     $extends = array('jpeg', 'png', 'gif');
     $imgfile = array();
 
     foreach ( $extends as $extend ){
-      $imgpath = ( __DIR__.'/../uploads/'.$examcd.'.'.$extend );
+      $imgpath = ( __DIR__.'/../webroot/img/'.$examcd.'.'.$extend );
 
       if (file_exists( $imgpath )){
         $size = (getimagesize($imgpath));
+        $path = ($CFG['HOMEPATH'].'/img/'.$examcd.'.'.$extend);
 
 	$imgfile = array('flag' => true,
-                         'path' => $imgpath,
+                         'path' => $path,
                          'extend' => $extend,
                          'imgx' => $size[0],
                          'imgy' => $size[1] );
@@ -86,46 +97,13 @@ class Filelib {
     return $imgfile['flag'] = false;
   }
 
-  function isImage( $examcd ){
-    global $CFG;
-    $extends = array('.jpeg', '.png', 'gif');
-
-    foreach ( $extends as $extend ){
-      if (file_exists( __DIR__.'/../web/uploads/'.$examcd.$extend )){
-	echo '<img src="'.$CFG['HOMEPATH'].'/uploads/'.h($examcd).$extend.'">'."\n";
-      }
-    }
-  }
-
-  function isImageDel( $examcd ){
-    global $CFG;
-    $extends = array('.jpeg', '.png', 'gif');
-
-    foreach ( $extends as $extend ){
-      if (file_exists( __DIR__.'/../web/uploads/'.$examcd.$extend )){
-	echo '<img src="'.$CFG['HOMEPATH'].'/uploads/'.h($examcd).$extend.'">'."\n";
-        echo '<button class="btn btn-default" type="submit" name="delimage" value="delimage">画像削除</button>';
-
-      }
-    }
-  }
-
-  function delImageFile( $mondai ){
+  function delImg ( $cd ) {
     global $CFG;
     $extends = array('.jpeg', '.png', 'gif');
     foreach ( $extends as $extend ){
-      if (file_exists( __DIR__.'/../web/uploads/'.$mondai.$extend )){
-        unlink( __DIR__.'/../web/uploads/'.$mondai.$extend );
-      }
-    }
-  }
-
-  function delImage( $mondai ) {
-    global $CFG;
-    $extends = array('.jpeg', '.png', 'gif');
-    foreach ( $extends as $extend ){
-      if ( file_exists( __DIR__.'/../web/uploads/'.$mondai.$extend )) {
-        unlink( __DIR__.'/../web/uploads/'.$mondai.$extend );
+      $imgpath = (__DIR__.'/../webroot/img/'.$cd.$extend);
+      if ( file_exists( $imgpath )) {
+        unlink( $imgpath );
       }
     }
   }

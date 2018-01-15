@@ -27,11 +27,21 @@ if( isset( $_FILES['fileup'] )){
   $msg = $filelib->up($_FILES, $cd);
 }
 
+
 // $cd の画像ファイルがあれば $imgpath に設定
+$imgpath = '';
+if (! $cd == ""){
+  $imgfile = $filelib->isImg( $cd );
+  if ( $imgfile['flag'] == true ){
+    $imgpath = '<img src="'.$imgfile['path'].'" width="'.$imgfile['imgx'].'" height="'.$imgfile['imgy'].'" >';
+  }
+}
+
 
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
 $smarty->assign('cate', $cate);
+$smarty->assign('imgpath', $imgpath);
 
 if ( $mode === 'added' ){
   $exam->addExam( $_POST );
