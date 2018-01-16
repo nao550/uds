@@ -27,6 +27,11 @@
                       {$exam@iteration}:
                       {{$exam.exam}|nl2br nofilter}
                     </div>
+                    {if $exam.img.flag eq true}
+                      <div class="graphic">
+                        <img src="{$exam.img.path}" width="{$exam.img.imgx}" height="{$exam.img.imgy}" />
+                      </div>
+                    {/if}
                     <div class="examselect">
                       {if $exam.type eq '1'}
                         {if $exam.ans1 neq ''}
