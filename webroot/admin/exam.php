@@ -20,13 +20,23 @@ $cate = $cate->getAllCate();
 $mode = getPost('mode');
 $cd = getPost('cd');
 
+if ( $mode === 'added' ){
+  $exam->addExam( $_POST );
+  $cd = $exam->getLastinsertId();
+  $mode = '';
+} else if ( $mode === 'update' ){
+  $exam->updateExam( $_POST );
+  $mode = '';
+} else if ( $mode === 'del' ){
+  $exam->delExam( $cd );
+  $mode = '';
+}
 
 // $_FILES が設定されていれば画像ファイルの追加
 if( isset( $_FILES['fileup'] )){
   // 追加するまえに古いファイルがあれば削除する
   $msg = $filelib->up($_FILES, $cd);
 }
-
 
 // $cd の画像ファイルがあれば $imgpath に設定
 $imgpath = '';
@@ -37,26 +47,14 @@ if (! $cd == ""){
   }
 }
 
-
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
 $smarty->assign('cate', $cate);
-$smarty->assign('imgpath', $imgpath);
-
-if ( $mode === 'added' ){
-  $exam->addExam( $_POST );
-  $mode = '';
-} else if ( $mode === 'update' ){
-  $exam->updateExam( $_POST );
-  $mode = '';
-} else if ( $mode === 'del' ){
-  $exam->delExam( $cd );
-  $mode = '';
-}
 
 if ( $mode === 'edit' ){
   $arExam = $exam->getExamStr($cd);
   $smarty->assign('arExam', $arExam);
+  $smarty->assign('imgpath', $imgpath);
   $smarty->display('file:admin/examedit.tpl');
 } else if ( $mode === 'add' ){
   $smarty->display('file:admin/examadd.tpl');

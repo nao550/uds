@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
         <div class="main">
-          <form name="examaddfrm" action="exam.php" method="POST">
+          <form name="examaddfrm" action="exam.php" method="POST" enctype="multipart/form-data">
             <table class="table table-bordered">
               <tbody>
                 <tr>
@@ -45,7 +45,6 @@
                 <tr>
                   <th>画像</th>
                   <td>
-                    <p><img src="hgoe.jpg"></p>
                     <p>
                       <input type="file" name="fileup" />
                     </p>
