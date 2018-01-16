@@ -19,6 +19,7 @@ $cate = $cate->getAllCate();
 
 $mode = getPost('mode');
 $cd = getPost('cd');
+$msg = array('','');
 
 if ( $mode === 'added' ){
   $exam->addExam( $_POST );
@@ -50,6 +51,7 @@ if (! $cd == ""){
 $smarty->assign('sid', $_SESSION['sid']);
 $smarty->assign('errormode', $errormode);
 $smarty->assign('cate', $cate);
+$smarty->assign('msg', $msg);
 
 if ( $mode === 'edit' ){
   $arExam = $exam->getExamStr($cd);

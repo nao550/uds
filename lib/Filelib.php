@@ -37,12 +37,12 @@ class Filelib {
 	case UPLOAD_ERR_OK: // OK
 	  break;
 	case UPLOAD_ERR_NO_FILE:   // ファイル未選択
-	  throw new RuntimeException('ファイルが選択されていません');
+	  throw new \RuntimeException('ファイルが選択されていません');
 	case UPLOAD_ERR_INI_SIZE:  // php.ini定義の最大サイズ超過
 	case UPLOAD_ERR_FORM_SIZE: // フォーム定義の最大サイズ超過
-	  throw new RuntimeException('ファイルサイズが大きすぎます');
+	  throw new \RuntimeException('ファイルサイズが大きすぎます');
 	default:
-	  throw new RuntimeException('その他のエラーが発生しました');
+	  throw new \RuntimeException('その他のエラーが発生しました');
 	}
 
 	// $files['fileup']['mime']の値はブラウザ側で偽装可能なので、MIMEタイプを自前でチェックする
@@ -50,7 +50,7 @@ class Filelib {
 	$type = @exif_imagetype($files['fileup']['tmp_name']);
 	//	if (!in_array($type, [IMAGETYPE_GIF, IMAGETYPE_JPEG, IMAGETYPE_PNG], true)) {
 	if (!in_array($type, $types, true)) {
-	  throw new RuntimeException('画像形式が未対応です');
+	  throw new \RuntimeException('画像形式が未対応です');
 	}
 
 	// ファイルデータからSHA-1ハッシュを取ってファイル名を決定し、ファイルを保存する
@@ -59,13 +59,13 @@ class Filelib {
 	$filename = $examcd . image_type_to_extension($type);
 	$path = sprintf( __DIR__ .'/../webroot/img/%s', $filename);
 	if (!move_uploaded_file($files['fileup']['tmp_name'], $path)) {
-	  throw new RuntimeException('ファイル保存時にエラーが発生しました');
+	  throw new \RuntimeException('ファイル保存時にエラーが発生しました');
 	}
 	chmod($path, 0644);
 
 	$msg = array('green', 'ファイルは正常にアップロードされました', $filename);
 
-      } catch (RuntimeException $e) {
+      } catch (\RuntimeException $e) {
 	$msg = array('red', $e->getMessage(), '' );
       }
       return $msg;

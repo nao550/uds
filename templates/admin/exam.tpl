@@ -4,6 +4,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
+          <p><font color="{$msg[0]}">{$msg[1]}</font>
           <div class="header">
             <div class="pagetitle"><h1>問題編集</h1></div>
           </div>
@@ -18,7 +19,7 @@
             <a href="qst.php"><button class="btn btn-default">アンケート編集</button></a>
           </div>
         </div>
-        <div class="col-md-1"></div>        
+        <div class="col-md-1"></div>
       </div>
 
       <div class="row">
@@ -39,7 +40,7 @@
                       <th>選択肢3</th>
                       <th>選択肢4</th>
                       <th>選択肢5</th>
-                      <th>*</th>                        
+                      <th>*</th>
                     </tr>
                   </theader>
                 {/if}
@@ -57,7 +58,7 @@
                       {/foreach}
                     </td>
                     <td>{{$ar.exam}|nl2br nofilter}</td>
-                    <td>{$ar.correct}</td>                      
+                    <td>{$ar.correct}</td>
                     <td>
                       {if $ar.type eq '1'}
                         択一選択
@@ -94,4 +95,3 @@
 
   </body>
 {include file='footer.tpl'}
-  
