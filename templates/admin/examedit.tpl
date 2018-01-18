@@ -57,19 +57,6 @@
                   </td>
                 </tr>
                 <tr>
-                  <th>正解</th>
-                  <td>
-                    <select name="correct" class="form-control">
-                      <option value="1" {if $arExam.correct eq '1'}selected{/if}>1</option>
-                      <option value="2" {if $arExam.correct eq '2'}selected{/if}>2</option>
-                      <option value="3" {if $arExam.correct eq '3'}selected{/if}>3</option>
-                      <option value="4" {if $arExam.correct eq '4'}selected{/if}>4</option>
-                      <option value="5" {if $arExam.correct eq '5'}selected{/if}>5</option>
-
-                    </select>
-                  </td>
-                </tr>
-                <tr>
                   <th>タイプ</th>
                   <td>
                     <select name="type" class="form-control">
@@ -81,6 +68,36 @@
                         <option value="2" selected>複数選択</option>
                       {/if}
                     </select>
+                  </td>
+                </tr>
+                <tr>
+                  <th>正解</th>
+                  <td>
+                    <div class="checkbox">
+                      <label for="check1">
+                        <input type="checkbox" value="1" name="correct[]" id="check1" />1
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="check2">
+                        <input type="checkbox" value="2" name="correct[]" id="check2" />2
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="check3">
+                        <input type="checkbox" value="3" name="correct[]" id="check3" />3
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="check4">
+                        <input type="checkbox" value="4" name="correct[]" id="check4" />4
+                      </label>
+                    </div>
+                    <div class="checkbox">
+                      <label for="check5">
+                        <input type="checkbox" value="5" name="correct[]" id="check5" />5
+                      </label>
+                    </div>
                   </td>
                 </tr>
                 <tr>

@@ -34,6 +34,25 @@ function qstdel(){
 }
 
 function examupdate(){
+    var typeElm = document.getElementsByName('type')[0];
+    var typeSelect = typeElm.options[typeElm.selectedIndex].value;
+
+    var correctElm = document.getElementsByName('correct[]')
+    var correctCount = 0;
+    for( var i = 0; i <correctElm.length; i++){
+        if(correctElm[i].checked == true){
+            correctCount++;
+        }
+    }
+
+    if(correctCount ==  0){
+        alert("正解番号を選択してください")
+        return false;
+    } else if (( typeSelect == 1)&&( correctCount != 1 )){
+        alert('択一問題選択時には、正解番号は一つだけチェックしてください')
+        return false;
+    }
+
     if(window.confirm("問題を更新します。よろしいですか？")){
         document.exameditfrm.submit();
         return true;
@@ -43,6 +62,25 @@ function examupdate(){
 }
 
 function examadded(){
+    var typeElm = document.getElementsByName('type')[0];
+    var typeSelect = typeElm.options[typeElm.selectedIndex].value;
+
+    var correctElm = document.getElementsByName('correct[]')
+    var correctCount = 0;
+    for( var i = 0; i <correctElm.length; i++){
+        if(correctElm[i].checked == true){
+            correctCount++;
+        }
+    }
+
+    if(correctCount ==  0){
+        alert("正解番号を選択してください")
+        return false;
+    } else if (( typeSelect == 1)&&( correctCount != 1 )){
+        alert('択一問題選択時には、正解番号は一つだけチェックしてください')
+        return false;
+    }
+
     if(window.confirm("問題を追加します。よろしいですか？")){
         document.examaddfrm.submit();
         return true;
