@@ -2,11 +2,12 @@
 namespace morris;
 include_once __DIR__ . '/../../config.php';
 $errormode = 0;
-
+var_dump($_POST);
 $session = new Session;
 $exam = new Exam;
-$filelib = new Filelib;
 $cate = new Cate;
+$filelib = new Filelib;
+$request = new Request;
 
 $session->sessionChk( );
 
@@ -22,11 +23,11 @@ $cd = getPost('cd');
 $msg = array('','');
 
 if ( $mode === 'added' ){
-  $exam->addExam( $_POST );
+  $exam->addExam( $request->getExamPost() );
   $cd = $exam->getLastinsertId();
   $mode = '';
 } else if ( $mode === 'update' ){
-  $exam->updateExam( $_POST );
+  $exam->updateExam( $request->getExamPost() );
   $mode = '';
 } else if ( $mode === 'del' ){
   $exam->delExam( $cd );
@@ -55,6 +56,7 @@ $smarty->assign('msg', $msg);
 
 if ( $mode === 'edit' ){
   $arExam = $exam->getExamStr($cd);
+  var_dump( $arExam );
   $smarty->assign('arExam', $arExam);
   $smarty->assign('imgpath', $imgpath);
   $smarty->display('file:admin/examedit.tpl');

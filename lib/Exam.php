@@ -1,15 +1,12 @@
 <?php
 /*
    public function __construct
-   public function arStrFmt( string )
    public function getAllExam()
    public function addExam( array )
    public function getExamStr ( long )
    public function updateExam( array )
    public function delExam( long )
    public function countExam(){
-
-
 */
 
 namespace morris;
@@ -27,29 +24,6 @@ class Exam {
     }
   }
 
-  /*
-   */
-  function arStrFmt( $arStr ){
-    // 受けとった arStr はpostなのでサニタイズする必要がある
-    // // FILTER_SQANITIZE_ENCODE で文字化けする？
-    $def = array(
-      'cd' => FILTER_VALIDATE_INT,
-      'catecd' => FILTER_VALIDATE_INT,
-      'type' => FILTER_VALIDATE_INT,
-      'exam' => FILTER_DEFAULT,
-      'correct' => FILTER_VALIDATE_INT,
-      'ans1' => FILTER_DEFAULT,
-      'ans2' => FILTER_DEFAULT,
-      'ans3' => FILTER_DEFAULT,
-      'ans4' => FILTER_DEFAULT,
-      'ans5' => FILTER_DEFAULT,
-      'regdate' => FILTER_DEFAULT
-    );
-    $arExam = filter_var_array( $arStr, $def );
-
-    return $arExam;
-  }
-
   /* Get all exams
    * @return array
    */
@@ -64,17 +38,15 @@ class Exam {
    * @param array as added data array.
    * @return boolen.
   */
-  function addExam ( $arStr )
+  function addExam ( $arExam )
   {
-
-    $arExam = $this->arStrFmt( $arStr );
 
     $sql = 'INSERT INTO Exam (catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5, regdate ) VALUES (:catecd, :type, :exam, :correct, :ans1, :ans2, :ans3, :ans4, :ans5, NOW());';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
-    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_INT);
+    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_STR);
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);
@@ -90,14 +62,21 @@ class Exam {
     $stm->bindValue(':cd', $cd, PDO::PARAM_INT);
     $stm->execute();
     $row = $stm->fetch(PDO::FETCH_ASSOC);
+    if ( isset($row['correct'] )){
+      $num = ['1','2','3','4','5'];
+      foreach ( $num as $val ){
+        if (strpos( $row['correct'], $val ) !== false ){
+          $row['correct'.$val] = $val;
+        } else {
+          $row['correct'.$val] = '';
+        }
+      }
+    }
     return $row;
   }
 
 
-  function updateExam( $arStr ){
-
-    $arExam = $this->arStrFmt( $arStr );
-
+  function updateExam( $arExam ){
     $sql = 'UPDATE Exam SET catecd = :catecd, type = :type, exam = :exam, '.
            'correct = :correct, ans1 = :ans1, ans2 = :ans2, ans3 = :ans3, '.
            'ans4 = :ans4, ans5 = :ans5 where cd = :cd ;';
@@ -105,7 +84,7 @@ class Exam {
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
-    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_INT);
+    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_STR);
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);

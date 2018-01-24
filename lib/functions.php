@@ -17,7 +17,7 @@
   }
 
   function get_mdClass( $num = 0 ){
-    $pdo = $this->dbconnect();    
+    $pdo = $this->dbconnect();
     $sql = "SELECT *  FROM T_middleclass ";
     if ( $num != 0 ){
       $sql .= "WHERE largecd= :num " ;
@@ -36,7 +36,7 @@
     return $mdclass;
   }
 
-   
+
 */
 
 
@@ -47,6 +47,21 @@ function h( $str ){
 function getPost( $str ){
   isset($_POST[$str]) ? $rstr = h($_POST[$str]) : $rstr = '' ;
   return $rstr;
+}
+
+function valPost(){
+  $ret = array();
+  foreach ( $_POST as $key => $val ){
+    $ret[$key] = $val;
+  }
+  return $ret;
+}
+
+function isChecked( $str, $check ){
+  if (strpos( $str, $check )){
+    return 'checked';
+  }
+  return '';
 }
 
 function hankaku( $str ){
@@ -69,7 +84,7 @@ function getToDay(){
 function cmbYear( $toYear ){
   $YearBack = 20; // 表示年数
   $thisYear = date("Y"); // 今年
-  
+
   for( $i = 0 ; $YearBack >= $i ; $i++ ){
     $val = $thisYear - $i;
     if ( $toYear == $val ){
@@ -94,7 +109,7 @@ function cmbMonth( $toMonth ){
 
 function cmbDay( $toDay ){
   $day = 31;
- 
+
   for( $i = 1 ; $day >= $i ; $i++ ){
     if ( $i == $toDay ){
       print("<option value=\"$i\" selected>$i</option>\n ");

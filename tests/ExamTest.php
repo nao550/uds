@@ -15,8 +15,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   private $ans4;
   private $ans5;
   private $regdate;
-    
-  
+
+
 /*
   public function setUp(){
   }
@@ -40,7 +40,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
       'catecd' => $this->catecd,
       'type' => $this->type,
       'exam' => $this->exam,
-      'correct' => $this->correct,      
+      'correct' => $this->correct,
       'ans1' => $this->ans1,
       'ans2' => $this->ans2,
       'ans3' => $this->ans3,
@@ -50,7 +50,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
 
     $this->target = new Exam;
 
-    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/ExamDB.xml');    
+    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/ExamDB.xml');
   }
 
   public function testGetAllExam()
@@ -72,7 +72,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   public function testGetExamStr()
   {
     $this->target->addExam( $this->arExam );
-    $this->arExam['cd'] = $this->target->getLastInsertId();    
+    $this->arExam['cd'] = $this->target->getLastInsertId();
     $this->assertEquals( $this->arExam, $this->target->getExamStr($this->arExam['cd']));
   }
 
@@ -84,7 +84,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->arExam['catecd'] = '3';
     $this->arExam['type'] = '2';
     $this->arExam['exam'] = '更新した問題、';
-    $this->arExam['correct'] = '1';    
+    $this->arExam['correct'] = '1';
     $this->arExam['ans1'] = '更新した解答1';
     $this->arExam['ans2'] = '更新した解答2';
     $this->arExam['ans3'] = '更新した解答3';
@@ -99,15 +99,15 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   public function testDelExam()
   {
     $this->target->addExam( $this->arExam);
-    $cd = $this->target->getLastInsertId();    
+    $cd = $this->target->getLastInsertId();
     $this->assertTrue( $this->target->delExam( $cd ));
   }
-  
+
 }
 
 
 
-/*  
+/*
   public function testGetRowCount()
   {
     $this->assertEquals(4, $this->getConnection()->getRowCount( 'Exam'));
@@ -120,8 +120,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     $this->assertTablesEqual($expectedTable, $queryTable);
   }
 
-  
-  
+
+
   public function testAddExam ()
   {
     //$this->markTestIncomplete();
@@ -136,4 +136,3 @@ class RespTest extends Generic_Tests_DatabaseTestCase
 
 }
 */
-

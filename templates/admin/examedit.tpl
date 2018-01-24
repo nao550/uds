@@ -75,27 +75,27 @@
                   <td>
                     <div class="checkbox">
                       <label for="check1">
-                        <input type="checkbox" value="1" name="correct[]" id="check1" />1
+                        <input type="checkbox" value="1" name="correct[]" id="check1" {if $arExam.correct1 eq '1'}checked{/if} />1
                       </label>
                     </div>
                     <div class="checkbox">
                       <label for="check2">
-                        <input type="checkbox" value="2" name="correct[]" id="check2" />2
+                        <input type="checkbox" value="2" name="correct[]" id="check2" {if $arExam.correct2 eq '2'}checked{/if} />2
                       </label>
                     </div>
                     <div class="checkbox">
                       <label for="check3">
-                        <input type="checkbox" value="3" name="correct[]" id="check3" />3
+                        <input type="checkbox" value="3" name="correct[]" id="check3" {if $arExam.correct3 eq '3'}checked{/if} />3
                       </label>
                     </div>
                     <div class="checkbox">
                       <label for="check4">
-                        <input type="checkbox" value="4" name="correct[]" id="check4" />4
+                        <input type="checkbox" value="4" name="correct[]" id="check4" {if $arExam.correct4 eq '4'}checked{/if} />4
                       </label>
                     </div>
                     <div class="checkbox">
                       <label for="check5">
-                        <input type="checkbox" value="5" name="correct[]" id="check5" />5
+                        <input type="checkbox" value="5" name="correct[]" id="check5" {if $arExam.correct5 eq '5'}checked{/if} />5
                       </label>
                     </div>
                   </td>
