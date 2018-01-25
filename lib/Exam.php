@@ -40,13 +40,19 @@ class Exam {
   */
   function addExam ( $arExam )
   {
+    for ( $n = 1; $n < 5;$n++){
+      if ( $arExam['correct'][$n] !== '' ){
+        $arExam['correct'][0] .= $arExam['correct'][$n];
+      }
+    }
 
+    var_dump( $arExam )    ;
     $sql = 'INSERT INTO Exam (catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5, regdate ) VALUES (:catecd, :type, :exam, :correct, :ans1, :ans2, :ans3, :ans4, :ans5, NOW());';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
-    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_STR);
+    $stm->bindValue(':correct', $arExam['correct'][0], PDO::PARAM_STR);
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);
@@ -77,6 +83,13 @@ class Exam {
 
 
   function updateExam( $arExam ){
+
+    for ( $n = 1; $n < 5;$n++){
+      if ( $arExam['correct'][$n] !== '' ){
+        $arExam['correct'][0] .= $arExam['correct'][$n];
+      }
+    }
+
     $sql = 'UPDATE Exam SET catecd = :catecd, type = :type, exam = :exam, '.
            'correct = :correct, ans1 = :ans1, ans2 = :ans2, ans3 = :ans3, '.
            'ans4 = :ans4, ans5 = :ans5 where cd = :cd ;';
@@ -84,7 +97,7 @@ class Exam {
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arExam['type'], PDO::PARAM_INT);
     $stm->bindValue(':exam', $arExam['exam'], PDO::PARAM_STR);
-    $stm->bindValue(':correct', $arExam['correct'], PDO::PARAM_STR);
+    $stm->bindValue(':correct', $arExam['correct'][0], PDO::PARAM_STR);
     $stm->bindValue(':ans1', $arExam['ans1'], PDO::PARAM_STR);
     $stm->bindValue(':ans2', $arExam['ans2'], PDO::PARAM_STR);
     $stm->bindValue(':ans3', $arExam['ans3'], PDO::PARAM_STR);
