@@ -52,7 +52,7 @@
                   <td>
                     <p>{$imgpath nofilter}</p>
                     <p>
-                      <input type="file" name="fileup" />
+                      <input type="file" name="fileup" accept="image/png, image/jpeg, image/gif"/>
                     </p>
                   </td>
                 </tr>

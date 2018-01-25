@@ -46,7 +46,6 @@ class Exam {
       }
     }
 
-    var_dump( $arExam )    ;
     $sql = 'INSERT INTO Exam (catecd, type, exam, correct, ans1, ans2, ans3, ans4, ans5, regdate ) VALUES (:catecd, :type, :exam, :correct, :ans1, :ans2, :ans3, :ans4, :ans5, NOW());';
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':catecd', $arExam['catecd'], PDO::PARAM_INT);

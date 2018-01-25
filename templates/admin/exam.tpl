@@ -4,7 +4,6 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
-          <p><font color="{$msg[0]}">{$msg[1]}</font>
           <div class="header">
             <div class="pagetitle"><h1>問題編集</h1></div>
           </div>

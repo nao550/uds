@@ -2,7 +2,7 @@
 namespace morris;
 include_once __DIR__ . '/../../config.php';
 $errormode = 0;
-var_dump($_POST);
+
 $session = new Session;
 $exam = new Exam;
 $cate = new Cate;
@@ -31,13 +31,13 @@ if ( $mode === 'added' ){
   $mode = '';
 } else if ( $mode === 'del' ){
   $exam->delExam( $cd );
+  $filelib->delImg( $cd ); // 画像の削除
   $mode = '';
 }
 
 // $_FILES が設定されていれば画像ファイルの追加
 if( isset( $_FILES['fileup'] )){
-  // 追加するまえに古いファイルがあれば削除する
-  $msg = $filelib->up($_FILES, $cd);
+   $msg = $filelib->up($_FILES, $cd);
 }
 
 // $cd の画像ファイルがあれば $imgpath に設定
@@ -56,7 +56,6 @@ $smarty->assign('msg', $msg);
 
 if ( $mode === 'edit' ){
   $arExam = $exam->getExamStr($cd);
-  var_dump( $arExam );
   $smarty->assign('arExam', $arExam);
   $smarty->assign('imgpath', $imgpath);
   $smarty->display('file:admin/examedit.tpl');
@@ -67,4 +66,3 @@ if ( $mode === 'edit' ){
   $smarty->assign('arExam', $arExam);
   $smarty->display('file:admin/exam.tpl');
 }
-?>

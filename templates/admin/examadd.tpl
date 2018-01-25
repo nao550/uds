@@ -46,7 +46,7 @@
                   <th>画像</th>
                   <td>
                     <p>
-                      <input type="file" name="fileup" />
+                      <input type="file" name="fileup" accept="image/png, image/jpeg, image/gif"/>
                     </p>
                   </td>
                 </tr>

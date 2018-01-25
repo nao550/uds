@@ -32,7 +32,8 @@
 
     bug: 問題を削除したときに画像が削除されない
     bug: 問題を追加したときに画像がないとエラーメッセージがでる
-    bug: admin/examedit.tpl を更新するたびに問題文の先頭に空白が追加される
+    180125: アップロードできるファイルを画像に制限
+    180125: bug: admin/examedit.tpl を更新するたびに問題文の先頭に空白が追加される
     bug: admin/examadd からtopに戻ってリロードすると、再度問題が追加される
     tkt: examadd, examedit でtypeによるcorrect数のチェック
     180125: admin/examadd でcorrect複数チェック時して追加できいるように
