@@ -45,7 +45,7 @@
                 </tr>
                 <tr>
                   <th>問題文</th>
-                  <td><textarea name="exam" class="form-control" rows="5"> {{$arExam.exam}|nl2br nofilter}</textarea></td>
+                  <td><textarea name="exam" class="form-control" rows="5">{{$arExam.exam}|nl2br nofilter}</textarea></td>
                 </tr>
                 <tr>
                   <th>画像</th>
