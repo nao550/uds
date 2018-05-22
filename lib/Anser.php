@@ -12,6 +12,7 @@ use PDO;
 
 class Anser {
   private $pdo;
+  private $score;
 
   function __construct(){
     $dsn = 'mysql:host=' . $GLOBALS['DBSV'] . ';dbname=' . $GLOBALS['DBNM'] . ';charset=utf8';
@@ -20,6 +21,7 @@ class Anser {
     } catch (PDOException $e) {
       exit('データベース接続失敗。'.$e->getMessage());
     }
+    $this->score = new Score;
   }
 
   /* insert ansers
@@ -28,17 +30,20 @@ class Anser {
    */
   function addAns ( $arStr )
   {
-    $sql = 'INSERT INTO Ans (uid, examcd, catcd, type, ans, correct, sid, regdate ) VALUES (:uid, :examcd, :catcd, :type, :ans, :correct, :sid, NOW());';
+    $sql = 'INSERT INTO Ans (uid, examcd, catecd, type, ans, correct, sid, regdate ) VALUES (:uid, :examcd, :catecd, :type, :ans, :correct, :sid, NOW());';
 
     $stm = $this->pdo->prepare( $sql );
     $stm->bindValue(':uid', $arStr['uid'], PDO::PARAM_INT);
     $stm->bindValue(':examcd', $arStr['examcd'], PDO::PARAM_INT);
-    $stm->bindValue(':catcd', $arStr['catcd'], PDO::PARAM_INT);
+    $stm->bindValue(':catecd', $arStr['catecd'], PDO::PARAM_INT);
     $stm->bindValue(':type', $arStr['type'], PDO::PARAM_INT);
     $stm->bindValue(':ans', $arStr['ans'], PDO::PARAM_STR);
     $stm->bindValue(':sid', $arStr['sid'], PDO::PARAM_STR);
     $stm->bindValue(':correct', $arStr['correct'], PDO::PARAM_INT);
-    return ($stm->execute());
+    $stm->execute();
+
+    $this->score->cntScore($arStr);
+
   }
 
   /* format Responce data
@@ -57,7 +62,7 @@ class Anser {
       }
 
       $examcd = getPost($n.'examcd');
-      $catcd = getPost($n.'catcd');
+      $catecd = getPost($n.'catecd');
       $correct = getPost($n.'correct');
       $type = getPost($n.'type');
       $ans = '';
@@ -78,38 +83,13 @@ class Anser {
         'uid' => $uid,
         'sid' => $sid,
         'examcd' => $examcd,
-        'catcd' => $catcd,
+        'catecd' => $catecd,
         'correct' => $correct,
         'type' => $type,
         'ans' => $ans );
-      $this->addans( $value );
+      $this->addAns( $value );
     }
 
-    /*
-    foreach ( $_POST as $key => $value ) {
-      var_dump( $key ." and ". $value );
-      echo "<br />\n";
-     */
-
-/*
-      if (isset( $value['examcd']) !== false){
-        $value['uid'] = $uid;
-        if (isset($value['catcd']) === false){
-          return false;
-        }
-        if ( isset($value['ans']) === false ){
-          isset($value['ans1']) ? $ans .= $value['ans1'] : $ans .= '' ;
-          isset($value['ans2']) ? $ans .= $value['ans2'] : $ans .= '' ;
-          isset($value['ans3']) ? $ans .= $value['ans3'] : $ans .= '' ;
-          isset($value['ans4']) ? $ans .= $value['ans4'] : $ans .= '' ;
-          isset($value['ans5']) ? $ans .= $value['ans5'] : $ans .= '' ;
-          $value['ans'] = $ans;
-        }
-
-        $this->addAns( $value );
-        $ans = '';
-      }
- */
     return true;
   }
 

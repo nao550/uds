@@ -28,10 +28,12 @@
     アンケート集計ページの作成
     アンケート集計関数
     解答状況管理テーブルの作成
-    問題追加と編集が正常にできるかチェック
-
-    bug: 問題を削除したときに画像が削除されない
-    bug: 問題を追加したときに画像がないとエラーメッセージがでる
+    Score へ合計点が入るか、val がチェック付くか確認する
+    180315: Score へ insert できるようになった。
+    180126: 問題追加と編集が正常にできるかチェック
+    180126: bug: 画像のある問題を更新すると画像が消える
+    180126: bug: 問題を削除したときに画像が削除されない
+    180126: bug: 問題を追加したときに画像がないとエラーメッセージがでる
     180125: アップロードできるファイルを画像に制限
     180125: bug: admin/examedit.tpl を更新するたびに問題文の先頭に空白が追加される
     bug: admin/examadd からtopに戻ってリロードすると、再度問題が追加される
@@ -138,10 +140,10 @@
     回答未解答の状況を管理
     Udschk
     cd, sirial, CD
-    uid, vchaar(29), ユーザID
-    qstflag, boolen, 回答状況、true:済、false:未、 null:不許可
-    exmflag, boolen, 解答状況, true:済、false:必達未達、null:未解答
-    cat[1-100], int, カテゴリ毎点数
+    uid, vchaar(30), ユーザID
+    qstflag, boolen, 回答状況、true:済、false:未
+    exmflag, boolen, 解答状況, true:済、false:未解答
+    reqflag, boolen, 必須カテゴリ到達, true:達成、false:未達
     moddate, date, 更新日
     regdate, date, 登録日
 
@@ -176,4 +178,24 @@
 
 ### 解答tb
 
-    ans
+    解答が1問1レコードになる。
+    Ans
+    cd, sirial, CD
+    uid, vchar(30), ユーザID
+    examcd, int, 問題CD
+    catecd, int, カテゴリlCD
+    type, int, 問題タイプ
+    ans, int, 選択した答え
+    correct, int, 正解選択肢
+    sid, varchar(100), Session ID
+    regdate, datetime, 解答送信日
+
+# 点数管理
+
+    カテゴリ毎の合計点が1レコードになる
+    cd, sirial, CD
+    uid, varchar(30), UID
+    catecd, int, カテゴリCD
+    score, int, 点数
+    val, boolen, 必須？
+    regdate, date, 登録日

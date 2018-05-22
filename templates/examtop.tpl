@@ -20,7 +20,7 @@
                 {foreach $arexam as $exam name="examnum"}
                   <div class="exam">
                     <input type="hidden" name="{$exam@iteration}examcd" value="{$exam.cd}" />
-                    <input type="hidden" name="{$exam@iteration}catcd" value="{$exam.catecd}" />
+                    <input type="hidden" name="{$exam@iteration}catecd" value="{$exam.catecd}" />
                     <input type="hidden" name="{$exam@iteration}correct" value="{$exam.correct}" />
                     <input type="hidden" name="{$exam@iteration}type" value="{$exam.type}" />
                     <div class="examtoi">

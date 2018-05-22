@@ -1,5 +1,6 @@
 <?php
 use morris\Resp;
+
 require_once __DIR__.'/Generic_Tests_DatabaseTestCase.php';
 require_once __DIR__.'/../lib/functions.php';
 
@@ -9,7 +10,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   private $qstcd;
   private $type;
   private $ans;
-  
+
 /*
   public function setUp(){
   }
@@ -29,7 +30,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
                            'ans' => $this->ans );
     $this->target = new Resp;
 
-    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/RespDB.xml');    
+    return $this->createFlatXMLDataSet(dirname(__FILE__).'/_files/RespDB.xml');
   }
 
   public function testAddResp ()
@@ -51,7 +52,7 @@ class RespTest extends Generic_Tests_DatabaseTestCase
 
 
 
-/*  
+/*
   public function testGetRowCount()
   {
     $this->assertEquals(4, $this->getConnection()->getRowCount( 'Qst'));
@@ -73,8 +74,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
     }
     $this->assertEquals(4, $n);
   }
-  
-  
+
+
   public function testAddQst ()
   {
     //$this->markTestIncomplete();
@@ -89,13 +90,13 @@ class RespTest extends Generic_Tests_DatabaseTestCase
   public function testGetQstStr()
   {
     $this->target->addQst( $this->arQst );
-    $cd = $this->target->getLastInsertId();    
+    $cd = $this->target->getLastInsertId();
     $this->assertEquals( $this->arQst, $this->target->getQstStr($cd));
   }
 
   public function testUpdateQst()
   {
-    $this->target->addQst( $this->arQst);    
+    $this->target->addQst( $this->arQst);
     $this->arQst['ans1'] = 'renewans1';
     $this->arQst['ans2'] = 'renewans2';
     $this->arQst['ans3'] = 'renewans3';
@@ -109,9 +110,8 @@ class RespTest extends Generic_Tests_DatabaseTestCase
 
   public function testDelQst()
   {
-    $this->target->addQst( $this->arQst);    
+    $this->target->addQst( $this->arQst);
     $this->assertTrue( $this->target->delQst( $this->cd ));
   }
 }
 */
-

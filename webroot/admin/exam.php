@@ -36,8 +36,9 @@ if ( $mode === 'added' ){
 }
 
 // $_FILES が設定されていれば画像ファイルの追加
-if( isset( $_FILES['fileup'] )){
-   $msg = $filelib->up($_FILES, $cd);
+if( isset( $_FILES['fileup']) && ( $_FILES['fileup']['name'] !== '' )){
+  var_dump( $_FILES );
+  $msg = $filelib->up($_FILES, $cd);
 }
 
 // $cd の画像ファイルがあれば $imgpath に設定
