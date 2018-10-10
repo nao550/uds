@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+.main {
+    margin-bottom: 30px;
+}
+
+.pagetitle {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.pagetitle h1 {
+    font-size: 200%;
+    font-weight: bold;
+    color: #333;
+}
+
+.guidance {
+    border-style: double double solid solid;
+    bordre-width: 3px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 5px;
+}
+
+.qst {
+    margin-bottom: 20px;
+    border: solid 1px #333;
+    padding: 5px;
+
+}
+
+.qsttoi {
+    margin-top: 10px;
+    font-size: 120%;
+    line-height: 1.5em;
+}
+
+.qstselect {
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 2em;
+}
+
+.exam {
+    margin-bottom: 20px;
+    border: solid 1px #333;
+    padding: 5px;
+}
+
+.examtoi {
+    margin-top: 10px;
+    font-size: 120%;
+    line-height: 1.5em;
+}
+
+.examselect {
+    margin-top: 10px;
+    margin-left: 20px;
+    line-height: 2em;
+}
