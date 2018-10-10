@@ -23,6 +23,8 @@ var_dump($_POST);
 /* 解答送信 */
 if (getPost("mode") === "ans") {
   $anser->fmtAns();
+  /* 採点する */
+
   $smarty->assign('uid', $uid);
   $smarty->assign('sid', $sid);
   $smarty->display('examend.tpl');
